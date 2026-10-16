@@ -1,0 +1,80 @@
+[
+ {
+  "codigo": "excavadora-volvo-ec350el",
+  "nombre": "EXCAVADORA VOLVO EC350EL",
+  "tipo": "Excavadora",
+  "detalle": "VOLVO EC350EL",
+  "icono": "excavadora",
+  "os": "2139",
+  "horas_os": 130.0,
+  "arrastre_periodo": "Setiembre",
+  "arrastre_horas": 58.2,
+  "saldo_archivo": 0.0,
+  "orden": 1
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "nombre": "RETROEXCAVADORA CAT 420F2",
+  "tipo": "Retroexcavadora",
+  "detalle": "CAT 420F2",
+  "icono": "retro",
+  "os": "2122",
+  "horas_os": 240.0,
+  "arrastre_periodo": "Setiembre",
+  "arrastre_horas": 6.4,
+  "saldo_archivo": 147.8,
+  "orden": 2
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "nombre": "VOLQUETE N°01 - CLL-702",
+  "tipo": "Volquete",
+  "detalle": "N°01 - CLL-702",
+  "icono": "volquete",
+  "os": "2141",
+  "horas_os": 248.0,
+  "arrastre_periodo": "Setiembre",
+  "arrastre_horas": 1.4,
+  "saldo_archivo": null,
+  "orden": 3
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "nombre": "VOLQUETE N°01 - CDE-898",
+  "tipo": "Volquete",
+  "detalle": "N°01 - CDE-898",
+  "icono": "volquete",
+  "os": "2141",
+  "horas_os": 248.0,
+  "arrastre_periodo": "Setiembre",
+  "arrastre_horas": 2.6,
+  "saldo_archivo": 107.8,
+  "orden": 4
+ },
+ {
+  "codigo": "rodillo-compactador",
+  "nombre": "RODILLO COMPACTADOR",
+  "tipo": "Rodillo compactador",
+  "detalle": "",
+  "icono": "rodillo",
+  "os": "2597",
+  "horas_os": 205.0,
+  "arrastre_periodo": "",
+  "arrastre_horas": 0.0,
+  "saldo_archivo": 181.5,
+  "orden": 5
+ },
+ {
+  "codigo": "excavadora-virgo",
+  "nombre": "EXCAVADORA VIRGO",
+  "tipo": "Excavadora",
+  "detalle": "VIRGO",
+  "icono": "excavadora",
+  "os": "",
+  "horas_os": null,
+  "arrastre_periodo": "",
+  "arrastre_horas": 0.0,
+  "saldo_archivo": null,
+  "orden": 6
+ }
+]

@@ -1,0 +1,632 @@
+[
+ {
+  "codigo": "excavadora-volvo-ec350el",
+  "fecha": "2026-10-01",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 7.1,
+  "acumulado": 65.3,
+  "saldo_archivo": 64.7,
+  "trabajo": true
+ },
+ {
+  "codigo": "excavadora-volvo-ec350el",
+  "fecha": "2026-10-02",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 5.0,
+  "acumulado": 70.3,
+  "saldo_archivo": 59.7,
+  "trabajo": true
+ },
+ {
+  "codigo": "excavadora-volvo-ec350el",
+  "fecha": "2026-10-03",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 0.0,
+  "acumulado": 70.3,
+  "saldo_archivo": 59.7,
+  "trabajo": false
+ },
+ {
+  "codigo": "excavadora-volvo-ec350el",
+  "fecha": "2026-10-04",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 70.3,
+  "saldo_archivo": 59.7,
+  "trabajo": false
+ },
+ {
+  "codigo": "excavadora-volvo-ec350el",
+  "fecha": "2026-10-05",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 8.0,
+  "acumulado": 78.3,
+  "saldo_archivo": 51.7,
+  "trabajo": true
+ },
+ {
+  "codigo": "excavadora-volvo-ec350el",
+  "fecha": "2026-10-06",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 5.7,
+  "acumulado": 84.0,
+  "saldo_archivo": 46.0,
+  "trabajo": true
+ },
+ {
+  "codigo": "excavadora-volvo-ec350el",
+  "fecha": "2026-10-07",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 7.8,
+  "acumulado": 91.8,
+  "saldo_archivo": 38.2,
+  "trabajo": true
+ },
+ {
+  "codigo": "excavadora-volvo-ec350el",
+  "fecha": "2026-10-08",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 91.8,
+  "saldo_archivo": 38.2,
+  "trabajo": false
+ },
+ {
+  "codigo": "excavadora-volvo-ec350el",
+  "fecha": "2026-10-09",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 9.4,
+  "acumulado": 101.2,
+  "saldo_archivo": 28.8,
+  "trabajo": true
+ },
+ {
+  "codigo": "excavadora-volvo-ec350el",
+  "fecha": "2026-10-10",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 5.0,
+  "acumulado": 106.2,
+  "saldo_archivo": 23.8,
+  "trabajo": true
+ },
+ {
+  "codigo": "excavadora-volvo-ec350el",
+  "fecha": "2026-10-11",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 106.2,
+  "saldo_archivo": 23.8,
+  "trabajo": false
+ },
+ {
+  "codigo": "excavadora-volvo-ec350el",
+  "fecha": "2026-10-12",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 8.8,
+  "acumulado": 115.0,
+  "saldo_archivo": 15.0,
+  "trabajo": true
+ },
+ {
+  "codigo": "excavadora-volvo-ec350el",
+  "fecha": "2026-10-13",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 7.1,
+  "acumulado": 122.1,
+  "saldo_archivo": 7.9,
+  "trabajo": true
+ },
+ {
+  "codigo": "excavadora-volvo-ec350el",
+  "fecha": "2026-10-14",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 7.9,
+  "acumulado": 130.0,
+  "saldo_archivo": 0.0,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-01",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 7.4,
+  "acumulado": 13.8,
+  "saldo_archivo": 226.2,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-02",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 2.6,
+  "acumulado": 16.4,
+  "saldo_archivo": 223.6,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-03",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 4.0,
+  "acumulado": 20.4,
+  "saldo_archivo": 219.6,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-04",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 20.4,
+  "saldo_archivo": 219.6,
+  "trabajo": false
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-05",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 8.0,
+  "acumulado": 28.4,
+  "saldo_archivo": 211.6,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-06",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 9.2,
+  "acumulado": 37.6,
+  "saldo_archivo": 202.4,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-07",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 9.6,
+  "acumulado": 47.2,
+  "saldo_archivo": 192.8,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-08",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 47.2,
+  "saldo_archivo": 192.8,
+  "trabajo": false
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-09",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 7.0,
+  "acumulado": 54.2,
+  "saldo_archivo": 185.8,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-10",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 8.4,
+  "acumulado": 62.6,
+  "saldo_archivo": 177.4,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-11",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 62.6,
+  "saldo_archivo": 177.4,
+  "trabajo": false
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-12",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 4.9,
+  "acumulado": 67.5,
+  "saldo_archivo": 172.5,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-13",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 8.3,
+  "acumulado": 75.8,
+  "saldo_archivo": 164.2,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-14",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 8.4,
+  "acumulado": 84.2,
+  "saldo_archivo": 155.8,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-15",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 8.0,
+  "acumulado": 92.2,
+  "saldo_archivo": 147.8,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-01",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 3.4,
+  "acumulado": 4.8,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-02",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 4.8,
+  "saldo_archivo": null,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-03",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 4.8,
+  "saldo_archivo": null,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-04",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 4.8,
+  "saldo_archivo": null,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-05",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 7.1,
+  "acumulado": 11.9,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-06",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 8.2,
+  "acumulado": 20.1,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-07",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 9.2,
+  "acumulado": 29.3,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-08",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 29.3,
+  "saldo_archivo": null,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-09",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 6.6,
+  "acumulado": 35.9,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-10",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 8.1,
+  "acumulado": 44.0,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-11",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 44.0,
+  "saldo_archivo": null,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-12",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 8.0,
+  "acumulado": 52.0,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-13",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 8.5,
+  "acumulado": 60.5,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-14",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 2.9,
+  "acumulado": 63.4,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-15",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 8.3,
+  "acumulado": 71.7,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-01",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 5.3,
+  "acumulado": 7.9,
+  "saldo_archivo": 235.3,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-02",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 7.9,
+  "saldo_archivo": 235.3,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-03",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 7.9,
+  "saldo_archivo": 235.3,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-04",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 7.9,
+  "saldo_archivo": 235.3,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-05",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 7.9,
+  "saldo_archivo": 228.2,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-06",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 7.4,
+  "acumulado": 15.3,
+  "saldo_archivo": 212.6,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-07",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 9.2,
+  "acumulado": 24.5,
+  "saldo_archivo": 194.2,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-08",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 7.5,
+  "acumulado": 32.0,
+  "saldo_archivo": 186.7,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-09",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 8.2,
+  "acumulado": 40.2,
+  "saldo_archivo": 171.9,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-10",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 40.2,
+  "saldo_archivo": 163.8,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-11",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 40.2,
+  "saldo_archivo": 163.8,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-12",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 8.2,
+  "acumulado": 48.4,
+  "saldo_archivo": 147.6,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-13",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 8.6,
+  "acumulado": 57.0,
+  "saldo_archivo": 130.5,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-14",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 3.0,
+  "acumulado": 60.0,
+  "saldo_archivo": 124.6,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-15",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 8.5,
+  "acumulado": 68.5,
+  "saldo_archivo": 107.8,
+  "trabajo": true
+ },
+ {
+  "codigo": "rodillo-compactador",
+  "fecha": "2026-10-06",
+  "descripcion": "COMPACTADO DE RELLENO",
+  "horas": 1.2,
+  "acumulado": 1.2,
+  "saldo_archivo": 203.8,
+  "trabajo": true
+ },
+ {
+  "codigo": "rodillo-compactador",
+  "fecha": "2026-10-07",
+  "descripcion": "COMPACTADO DE RELLENO",
+  "horas": 3.1,
+  "acumulado": 4.3,
+  "saldo_archivo": 200.7,
+  "trabajo": true
+ },
+ {
+  "codigo": "rodillo-compactador",
+  "fecha": "2026-10-08",
+  "descripcion": "COMPACTADO DE RELLENO",
+  "horas": 1.7,
+  "acumulado": 6.0,
+  "saldo_archivo": 199.0,
+  "trabajo": true
+ },
+ {
+  "codigo": "rodillo-compactador",
+  "fecha": "2026-10-09",
+  "descripcion": "COMPACTADO DE RELLENO",
+  "horas": 1.8,
+  "acumulado": 7.8,
+  "saldo_archivo": 197.2,
+  "trabajo": true
+ },
+ {
+  "codigo": "rodillo-compactador",
+  "fecha": "2026-10-10",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 7.8,
+  "saldo_archivo": 197.2,
+  "trabajo": false
+ },
+ {
+  "codigo": "rodillo-compactador",
+  "fecha": "2026-10-11",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 7.8,
+  "saldo_archivo": 197.2,
+  "trabajo": false
+ },
+ {
+  "codigo": "rodillo-compactador",
+  "fecha": "2026-10-12",
+  "descripcion": "COMPACTADO DE RELLENO",
+  "horas": 5.5,
+  "acumulado": 13.3,
+  "saldo_archivo": 191.7,
+  "trabajo": true
+ },
+ {
+  "codigo": "rodillo-compactador",
+  "fecha": "2026-10-13",
+  "descripcion": "COMPACTADO DE RELLENO",
+  "horas": 0.6,
+  "acumulado": 13.9,
+  "saldo_archivo": 191.1,
+  "trabajo": true
+ },
+ {
+  "codigo": "rodillo-compactador",
+  "fecha": "2026-10-14",
+  "descripcion": "COMPACTADO DE RELLENO",
+  "horas": 5.3,
+  "acumulado": 19.2,
+  "saldo_archivo": 185.8,
+  "trabajo": true
+ },
+ {
+  "codigo": "rodillo-compactador",
+  "fecha": "2026-10-15",
+  "descripcion": "COMPACTADO DE RELLENO",
+  "horas": 4.3,
+  "acumulado": 23.5,
+  "saldo_archivo": 181.5,
+  "trabajo": true
+ },
+ {
+  "codigo": "excavadora-virgo",
+  "fecha": "2026-10-15",
+  "descripcion": "PREPARACION DE MATERIAL SELECCIONADO",
+  "horas": 7.8,
+  "acumulado": 7.8,
+  "saldo_archivo": null,
+  "trabajo": true
+ }
+]

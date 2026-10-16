@@ -1,0 +1,710 @@
+<style>
+.mq{font-family:var(--font-anthropic-sans);color:var(--color-fg)}
+.mq [hidden]{display:none!important}
+.mq-head h1{font-family:var(--font-anthropic-serif);font-weight:400;font-size:var(--cds-font-size-title);margin:0 0 var(--cds-gap-xs)}
+.mq-takeaway{color:var(--color-fg-muted);margin:0 0 var(--cds-gap-lg);font-size:var(--cds-font-size-body);max-width:60rem}
+.mq-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,11rem),1fr));gap:var(--cds-gap-md);margin-bottom:var(--cds-gap-lg)}
+.mq-box{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-lg)}
+.mq-kpi{padding:var(--cds-pad-md)}
+.mq-kpi-label{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.mq-kpi-val{font-family:var(--font-anthropic-serif);font-weight:400;font-size:var(--cds-font-size-title);font-variant-numeric:tabular-nums;line-height:1.2;margin-top:var(--cds-gap-xs)}
+.mq-kpi-sub{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);margin-top:var(--cds-gap-xs);font-variant-numeric:tabular-nums}
+.mq-unit{font-family:var(--font-anthropic-sans);font-size:var(--cds-font-size-body);color:var(--color-fg-muted);margin-left:.2em}
+.mq-h2{font-size:var(--cds-font-size-heading);font-weight:var(--cds-font-weight-medium);margin:var(--cds-gap-lg) 0 var(--cds-gap-xs)}
+.mq-note{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);margin:0 0 var(--cds-gap-md)}
+.mq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,10.5rem),1fr));gap:var(--cds-gap-md);min-height:12rem}
+.mq-card{cursor:pointer;display:flex;flex-direction:column;gap:var(--cds-gap-sm);padding:var(--cds-pad-md);transition:border-color var(--cds-dur-slow)}
+.mq-card:hover,.mq-card:focus-visible{border-color:var(--color-fg-muted);outline:none}
+.mq-img{background:var(--color-bg);border-radius:var(--cds-radius);aspect-ratio:5/3;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.mq-img svg{width:86%;height:86%}
+.mq-img img{width:100%;height:100%;object-fit:cover}
+.mq-ico .b{fill:#E3A21A}.mq-ico .t{fill:var(--color-fg);opacity:.78}.mq-ico .g{fill:var(--color-panel)}
+.mq-ico .s{stroke:#E3A21A;stroke-width:5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.mq-ico .gl{stroke:var(--color-border-line);stroke-width:1.5}
+.mq-row{display:flex;align-items:center;justify-content:space-between;gap:var(--cds-gap-sm);flex-wrap:wrap}
+.mq-code{font-size:var(--cds-font-size-caption);font-weight:var(--cds-font-weight-medium);font-variant-numeric:tabular-nums}
+.mq-chip{font-size:var(--cds-font-size-caption);border:1px solid currentColor;border-radius:999px;padding:0 var(--cds-pad-sm);white-space:nowrap}
+.mq-chip[data-sit="Con saldo"]{color:var(--color-ok)}.mq-chip[data-sit="Por agotar"]{color:var(--color-warn)}.mq-chip[data-sit="Agotada"]{color:var(--color-bad)}.mq-chip[data-sit="Sin O.S."]{color:var(--color-fg-muted)}
+.mq-card h3{margin:0;font-size:var(--cds-font-size-body);font-weight:var(--cds-font-weight-medium)}
+.mq-mm{margin:0;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.mq-saldo{font-family:var(--font-anthropic-serif);font-size:var(--cds-font-size-title);font-variant-numeric:tabular-nums;line-height:1.1}
+.mq-track{height:8px;border-radius:4px;background:var(--color-border-line);overflow:hidden}
+.mq-fill{height:100%;border-radius:4px}
+.mq-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:var(--cds-gap-md);margin-top:var(--cds-gap-md)}
+.mq-cards h3{margin:0;font-size:var(--cds-font-size-heading);font-weight:var(--cds-font-weight-medium)}
+.mq-chart{position:relative;min-height:240px}
+.mq-chart svg{display:block;overflow:visible}
+.mq-chart text{font-family:var(--font-anthropic-sans);font-size:var(--cds-font-size-caption);fill:var(--color-fg-muted)}
+.mq-chart .lbl{fill:var(--color-fg)}
+.mq-tip{position:absolute;pointer-events:none;background:var(--cds-surface-popover);border:1px solid var(--cds-border);border-radius:var(--cds-radius);box-shadow:var(--cds-shadow-popover);padding:var(--cds-pad-xs) var(--cds-pad-sm);font-size:var(--cds-font-size-caption);white-space:nowrap;z-index:2}
+.mq-tip .h{color:var(--cds-text-secondary)}
+.mq-legend{display:flex;flex-wrap:wrap;gap:var(--cds-gap-md);font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);margin-top:var(--cds-gap-sm)}
+.mq-sw{display:inline-block;width:.6rem;height:.6rem;border-radius:2px;margin-right:.35rem;vertical-align:middle}
+.mq-hrow{display:grid;grid-template-columns:minmax(6rem,11rem) 1fr;gap:var(--cds-gap-sm);align-items:center;margin-bottom:var(--cds-gap-sm);font-size:var(--cds-font-size-caption)}
+.mq-hbars{display:flex;flex-direction:column;gap:3px}
+.mq-hbar{display:flex;align-items:center;gap:var(--cds-gap-xs);font-variant-numeric:tabular-nums;color:var(--color-fg-muted)}
+.mq-hbar>div{height:8px;border-radius:4px}
+.mq-stack{display:flex;height:22px;border-radius:var(--cds-radius);overflow:hidden;margin:var(--cds-gap-md) 0}
+.mq-estados{display:grid;grid-template-columns:repeat(auto-fit,minmax(8rem,1fr));gap:var(--cds-gap-sm)}
+.mq-estados .v{font-family:var(--font-anthropic-serif);font-size:var(--cds-font-size-heading);font-variant-numeric:tabular-nums}
+.mq-back{font:inherit;font-size:var(--cds-font-size-caption);background:none;border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-xs) var(--cds-pad-sm);color:var(--color-fg);cursor:pointer;margin-bottom:var(--cds-gap-md)}
+.mq-ficha{display:grid;grid-template-columns:minmax(0,18rem) 1fr;gap:var(--cds-gap-lg);align-items:center;margin-bottom:var(--cds-gap-lg)}
+@media (max-width:640px){.mq-ficha{grid-template-columns:1fr}.mq-opt{display:none}.mq-card{padding:var(--cds-pad-sm)}.mq-saldo{font-size:var(--cds-font-size-heading)}}
+.mq-ficha h2{font-family:var(--font-anthropic-serif);font-weight:400;font-size:var(--cds-font-size-title);margin:var(--cds-gap-xs) 0}
+.mq-dl{display:grid;grid-template-columns:auto 1fr;gap:var(--cds-gap-xs) var(--cds-gap-md);font-size:var(--cds-font-size-body);margin:var(--cds-gap-sm) 0 0}
+.mq-dl dt{color:var(--color-fg-muted)}.mq-dl dd{margin:0;font-variant-numeric:tabular-nums}
+.mq-search{font:inherit;font-size:var(--cds-font-size-body);padding:var(--cds-pad-xs) var(--cds-pad-sm);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);background:var(--color-bg);color:var(--color-fg);width:min(100%,18rem)}
+.mq-tablebox{max-height:440px;overflow:auto;margin-top:var(--cds-gap-sm)}
+.mq-table{width:100%;border-collapse:collapse;font-size:var(--cds-font-size-caption);font-variant-numeric:tabular-nums}
+.mq-table th{position:sticky;top:0;background:var(--color-panel);text-align:left;border-bottom:1px solid var(--color-border-line);padding:0;z-index:1}
+.mq-table th button{font:inherit;font-weight:var(--cds-font-weight-medium);background:none;border:0;color:var(--color-fg);padding:var(--cds-pad-xs) var(--cds-pad-sm);cursor:pointer;width:100%;text-align:inherit;white-space:nowrap}
+.mq-table td{padding:var(--cds-pad-xs) var(--cds-pad-sm);border-bottom:1px solid var(--color-border-line);white-space:nowrap}
+.mq-table .n{text-align:right}
+.mq-dot{display:inline-block;width:.5rem;height:.5rem;border-radius:50%;margin-right:.35rem;vertical-align:middle}
+.mq-fail{display:flex;align-items:center;justify-content:center;min-height:inherit;height:100%;color:var(--color-fg-muted);font-size:var(--cds-font-size-caption)}
+.mq-fail::before{content:"";width:.375rem;height:.375rem;border-radius:50%;background:var(--color-bad);margin-right:.4rem}
+[data-dash-source-state=empty]{color:transparent}
+[data-dash-source-state=refreshing]{opacity:.5;transition:opacity var(--cds-dur-slow)}
+.mq-upd{display:flex;flex-wrap:wrap;gap:var(--cds-gap-xs) var(--cds-gap-md);font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);margin:0 0 var(--cds-gap-sm)}
+.mq-upd b{font-weight:var(--cds-font-weight-medium);color:var(--color-fg)}
+.mq-warn{font-size:var(--cds-font-size-caption);color:var(--color-warn);margin:0 0 var(--cds-gap-sm)}
+.mq-os{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+</style>
+
+<div class="mq">
+  <header class="mq-head">
+    <h1 id="titulo">Control de maquinaria · Presa Parcco</h1>
+    <div class="mq-upd" id="actualizacion" data-source="actualizacion">
+      <span>Última actualización: <b class="dash-skeleton" data-source="actualizacion" data-field="actualizado_en" data-row="0">—</b></span>
+      <span>Partes registrados hasta: <b data-source="actualizacion" data-field="ultimo_parte" data-row="0">—</b></span>
+      <span>Archivo modificado: <b data-source="actualizacion" data-field="archivo_modificado" data-row="0">—</b></span>
+      <span>Fuente: <b data-source="actualizacion" data-field="archivo" data-row="0">—</b> · se actualiza cada día a las 6:00 a. m.</span>
+    </div>
+    <p class="mq-warn" id="avisos" hidden></p>
+    <p class="mq-takeaway dash-skeleton" id="resumen-texto" data-source="totales resumen">—</p>
+  </header>
+
+  <section id="inicio">
+    <div class="mq-kpis" id="kpis-flota">
+      <div class="mq-box mq-kpi"><div class="mq-kpi-label">Saldo de horas (órdenes de servicio)</div><div class="mq-kpi-val"><span class="dash-skeleton" data-source="totales" data-field="saldo" data-row="0">—</span><span class="mq-unit">h</span></div><div class="mq-kpi-sub">Horas O.S. − horas acumuladas</div></div>
+      <div class="mq-box mq-kpi"><div class="mq-kpi-label">Horas acumuladas</div><div class="mq-kpi-val"><span class="dash-skeleton" data-source="totales" data-field="consumidas" data-row="0">—</span><span class="mq-unit">h</span></div><div class="mq-kpi-sub">de <span data-source="totales" data-field="horas_os" data-row="0">—</span> h en <span data-source="totales" data-field="ordenes" data-row="0">—</span> órdenes de servicio</div></div>
+      <div class="mq-box mq-kpi"><div class="mq-kpi-label">Avance de horas</div><div class="mq-kpi-val"><span class="dash-skeleton" data-source="totales" data-field="avance" data-row="0">—</span></div><div class="mq-kpi-sub">Acumuladas ÷ horas de las O.S.</div></div>
+      <div class="mq-box mq-kpi"><div class="mq-kpi-label">Máquinas en alerta</div><div class="mq-kpi-val"><span class="dash-skeleton" data-source="totales" data-field="en_alerta" data-row="0">—</span><span class="mq-unit">de <span data-source="totales" data-field="maquinas" data-row="0">—</span></span></div><div class="mq-kpi-sub">O.S. agotada o con saldo &lt; 15 %</div></div>
+      <div class="mq-box mq-kpi"><div class="mq-kpi-label">Horas trabajadas en el periodo</div><div class="mq-kpi-val"><span class="dash-skeleton" data-source="totales" data-field="horas_periodo" data-row="0">—</span><span class="mq-unit">h</span></div><div class="mq-kpi-sub">Partes diarios del archivo, sin el arrastre</div></div>
+    </div>
+
+    <h2 class="mq-h2" id="flota-titulo">Flota en obra</h2>
+    <p class="mq-note">Seleccione una máquina (imagen o nombre) para ver sus partes diarios, horas acumuladas y análisis. Cuando dos máquinas comparten una orden de servicio, el saldo es el de la orden.</p>
+    <div class="mq-grid dash-skeleton" id="flota" data-source="resumen"></div>
+
+    <div class="mq-cards">
+      <div class="mq-box" id="card-ordenes">
+        <h3>Saldo por orden de servicio</h3>
+        <p class="mq-note">Barra gris: horas de la O.S. Barra de color: horas acumuladas. A la derecha, el saldo.</p>
+        <div class="mq-chart dash-skeleton" id="chart-ordenes" data-source="ordenes"></div>
+      </div>
+      <div class="mq-box" id="card-flota-dia">
+        <h3>Horas trabajadas por día</h3>
+        <p class="mq-note">Suma de horas máquina de la flota, por máquina.</p>
+        <div class="mq-chart dash-skeleton" id="chart-flota-dia" data-source="detalle resumen"></div>
+        <div class="mq-legend" id="leg-flota"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ficha-maquina" hidden>
+    <button class="mq-back" id="volver">← Volver a la flota</button>
+    <div class="mq-ficha">
+      <div class="mq-img mq-box" id="f-img" style="padding:0"></div>
+      <div>
+        <div class="mq-row" style="justify-content:flex-start"><span class="mq-chip" id="f-sit" data-source="resumen" data-field="situacion">—</span></div>
+        <h2 id="f-nombre" data-source="resumen" data-field="nombre">—</h2>
+        <dl class="mq-dl">
+          <dt>Tipo</dt><dd id="f-tipo" data-source="resumen" data-field="tipo">—</dd>
+          <dt>Marca / modelo / placa</dt><dd id="f-detalle" data-source="resumen" data-field="detalle">—</dd>
+          <dt>Orden de servicio</dt><dd id="f-os" data-source="resumen" data-field="os">—</dd>
+          <dt>Horas de la O.S.</dt><dd><span id="f-horas-os" data-source="resumen" data-field="horas_os">—</span> h</dd>
+          <dt>Comparte O.S. con</dt><dd id="f-comparte" data-source="resumen" data-field="comparte_con">—</dd>
+          <dt>Último parte</dt><dd id="f-ultimo" data-source="resumen" data-field="ultimo_parte">—</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="mq-kpis" id="kpis-maquina">
+      <div class="mq-box mq-kpi"><div class="mq-kpi-label">Saldo de la O.S.</div><div class="mq-kpi-val"><span class="fk" data-field="saldo">—</span><span class="mq-unit">h</span></div><div class="mq-kpi-sub">Horas O.S. − acumulado de la O.S.</div></div>
+      <div class="mq-box mq-kpi"><div class="mq-kpi-label">Acumulado de la máquina</div><div class="mq-kpi-val"><span class="fk" data-field="acumulado">—</span><span class="mq-unit">h</span></div><div class="mq-kpi-sub">Incluye arrastre de <span class="fk" data-field="arrastre_horas">—</span> h</div></div>
+      <div class="mq-box mq-kpi"><div class="mq-kpi-label">Avance de la O.S.</div><div class="mq-kpi-val"><span class="fk" data-field="avance">—</span></div><div class="mq-kpi-sub">O.S. acumulada <span class="fk" data-field="consumo_os">—</span> h</div></div>
+      <div class="mq-box mq-kpi"><div class="mq-kpi-label">Promedio por día trabajado</div><div class="mq-kpi-val"><span class="fk" data-field="promedio_diario">—</span><span class="mq-unit">h/día</span></div><div class="mq-kpi-sub">Últimos 30 días</div></div>
+      <div class="mq-box mq-kpi"><div class="mq-kpi-label">Saldo alcanza para</div><div class="mq-kpi-val"><span class="fk" data-field="dias_para_agotar">—</span><span class="mq-unit">días</span></div><div class="mq-kpi-sub">De trabajo, al ritmo actual de la O.S.</div></div>
+      <div class="mq-box mq-kpi"><div class="mq-kpi-label">Días trabajados</div><div class="mq-kpi-val"><span class="fk" data-field="dias_trabajados">—</span><span class="mq-unit">de <span class="fk" data-field="dias_registrados">—</span></span></div><div class="mq-kpi-sub">Días con parte en el periodo</div></div>
+    </div>
+
+    <div class="mq-cards">
+      <div class="mq-box" id="card-acum">
+        <h3>Horas acumuladas y proyección</h3>
+        <p class="mq-note" id="nota-acum">Acumulado del archivo (con arrastre); línea discontinua: proyección al ritmo promedio, 6 días por semana.</p>
+        <div class="mq-chart" id="chart-acum" data-source="detalle resumen"></div>
+        <div class="mq-legend" id="leg-acum"></div>
+      </div>
+      <div class="mq-box" id="card-dia">
+        <h3>Horas máquina por día</h3>
+        <p class="mq-note">Los días con parte pero sin horas se marcan en la base.</p>
+        <div class="mq-chart" id="chart-dia" data-source="detalle"></div>
+        <div class="mq-legend" id="leg-dia"></div>
+      </div>
+      <div class="mq-box" id="card-act">
+        <h3>Horas por actividad</h3>
+        <p class="mq-note">En qué se emplearon las horas del periodo.</p>
+        <div class="mq-chart" id="chart-act" data-source="actividades"></div>
+      </div>
+      <div class="mq-box" id="card-estado">
+        <h3>Estado situacional del servicio</h3>
+        <p class="mq-note">Uso de las horas de la orden de servicio y días con parte.</p>
+        <div id="chart-estado" data-source="resumen" style="min-height:120px"></div>
+      </div>
+    </div>
+
+    <div class="mq-box" id="card-tabla" style="margin-top:var(--cds-gap-md)">
+      <div class="mq-row"><h3 style="margin:0;font-size:var(--cds-font-size-heading);font-weight:var(--cds-font-weight-medium)">Partes diarios de la máquina</h3><input class="mq-search" id="buscar" type="search" placeholder="Buscar actividad o fecha…" aria-label="Buscar en los partes"></div>
+      <p class="mq-note" id="tabla-nota" style="margin-top:var(--cds-gap-xs)"></p>
+      <div class="mq-tablebox">
+        <table class="mq-table" id="tabla" data-source="detalle" data-row-key="codigo,fecha">
+          <thead><tr>
+            <th data-field="fecha"><button data-k="fecha">Fecha</button></th>
+            <th data-field="descripcion"><button data-k="descripcion">Actividad</button></th>
+            <th data-field="horas" class="n"><button data-k="horas">Horas máquina</button></th>
+            <th data-field="acumulado" class="n"><button data-k="acumulado">Horas acumuladas</button></th>
+            <th data-field="saldo_os" class="n"><button data-k="saldo_os">Saldo O.S.</button></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+dash.calc('resumen', {
+  inputs: ['maquinas', 'partes'],
+  title: 'Saldo y estado por máquina',
+  description: 'Por máquina: último acumulado del archivo, saldo de su orden de servicio (horas O.S. menos el acumulado de todas sus máquinas), días trabajados y promedio de los últimos 30 días.',
+  fn: (maquinas, partes) => {
+    const r1 = (x) => Math.round(x * 10) / 10;
+    const ultimo = partes.reduce((a, p) => (p.fecha > a ? p.fecha : a), '');
+    const desde = new Date(Date.parse(ultimo) - 30 * 864e5).toISOString().slice(0, 10);
+    const base = maquinas.map((m) => {
+      const ps = partes.filter((p) => p.codigo === m.codigo).sort((a, b) => (a.fecha < b.fecha ? -1 : 1));
+      const tr = ps.filter((p) => Number(p.horas) > 0);
+      const rec = tr.filter((p) => p.fecha > desde);
+      const ult = ps[ps.length - 1];
+      return {
+        codigo: m.codigo, nombre: m.nombre, tipo: m.tipo, detalle: m.detalle || '—', icono: m.icono, foto: m.foto || null,
+        os: m.os || '', horas_os: m.horas_os == null || m.horas_os === '' ? null : Number(m.horas_os), orden: Number(m.orden),
+        arrastre_periodo: m.arrastre_periodo || '', arrastre_horas: Number(m.arrastre_horas) || 0,
+        acumulado: ult ? Number(ult.acumulado) : Number(m.arrastre_horas) || 0,
+        horas_periodo: r1(ps.reduce((s, p) => s + Number(p.horas), 0)),
+        dias_registrados: ps.length, dias_trabajados: tr.length,
+        dias_sin_trabajo: ps.length - tr.length,
+        domingos_sin_trabajo: ps.filter((p) => !(Number(p.horas) > 0) && new Date(p.fecha + 'T00:00:00Z').getUTCDay() === 0).length,
+        promedio_diario: rec.length ? r1(rec.reduce((s, p) => s + Number(p.horas), 0) / rec.length) : 0,
+        ultimo_parte: ult ? ult.fecha : '',
+        ultima_actividad: tr.length ? tr[tr.length - 1].descripcion : '',
+      };
+    });
+    return base.map((m) => {
+      const grupo = m.os ? base.filter((o) => o.os === m.os) : [m];
+      const consumo = r1(grupo.reduce((s, o) => s + o.acumulado, 0));
+      const ritmo = grupo.reduce((s, o) => s + o.promedio_diario, 0);
+      const saldo = m.horas_os == null ? null : r1(m.horas_os - consumo);
+      return {
+        ...m,
+        consumo_os: consumo,
+        comparte_con: grupo.filter((o) => o.codigo !== m.codigo).map((o) => o.nombre).join(', ') || 'Ninguna',
+        saldo,
+        avance: m.horas_os ? consumo / m.horas_os : null,
+        dias_para_agotar: saldo == null ? null : saldo <= 0 ? 0 : ritmo ? Math.ceil(saldo / ritmo) : null,
+        situacion: m.horas_os == null ? 'Sin O.S.' : saldo <= 0 ? 'Agotada' : saldo < 0.15 * m.horas_os ? 'Por agotar' : 'Con saldo',
+      };
+    });
+  },
+});
+
+dash.calc('ordenes', {
+  inputs: ['resumen'],
+  title: 'Saldo por orden de servicio',
+  description: 'Cada orden de servicio con sus horas, el acumulado de sus máquinas y el saldo.',
+  fn: (resumen) => {
+    const g = {};
+    resumen.filter((m) => m.os && m.horas_os != null).forEach((m) => {
+      g[m.os] = g[m.os] || { os: m.os, horas_os: m.horas_os, consumo_os: m.consumo_os, saldo: m.saldo, avance: m.avance, situacion: m.situacion, maquinas: [], primera: m.codigo };
+      g[m.os].maquinas.push(m.nombre);
+    });
+    return Object.values(g).map((o) => ({ ...o, maquinas: o.maquinas.join(' + ') }));
+  },
+});
+
+dash.calc('totales', {
+  inputs: ['ordenes', 'resumen'],
+  title: 'Totales de la flota',
+  description: 'Suma de horas, acumulado y saldo de las órdenes de servicio (cada orden una vez); máquinas en alerta y horas trabajadas del periodo.',
+  fn: (ordenes, resumen) => {
+    const horas = ordenes.reduce((s, o) => s + o.horas_os, 0);
+    const cons = Math.round(ordenes.reduce((s, o) => s + o.consumo_os, 0) * 10) / 10;
+    return [{
+      ordenes: ordenes.length, maquinas: resumen.length, horas_os: horas, consumidas: cons,
+      saldo: Math.round((horas - cons) * 10) / 10, avance: horas ? cons / horas : 0,
+      en_alerta: resumen.filter((m) => m.situacion === 'Agotada' || m.situacion === 'Por agotar').length,
+      sin_os: resumen.filter((m) => m.situacion === 'Sin O.S.').length,
+      horas_periodo: Math.round(resumen.reduce((s, m) => s + m.horas_periodo, 0) * 10) / 10,
+    }];
+  },
+});
+
+dash.calc('detalle', {
+  inputs: ['partes', 'maquinas'],
+  title: 'Partes con saldo de la O.S.',
+  description: 'Cada parte diario con su acumulado y el saldo de su orden de servicio a esa fecha (horas O.S. menos el acumulado de todas sus máquinas hasta ese día).',
+  fn: (partes, maquinas) => {
+    const info = {};
+    maquinas.forEach((m) => { info[m.codigo] = m; });
+    const ord = partes.slice().sort((a, b) => (a.codigo === b.codigo ? (a.fecha < b.fecha ? -1 : 1) : a.codigo < b.codigo ? -1 : 1));
+    const acumA = (cod, fecha) => {
+      let v = Number(info[cod].arrastre_horas) || 0;
+      ord.forEach((p) => { if (p.codigo === cod && p.fecha <= fecha) v = Number(p.acumulado); });
+      return v;
+    };
+    return ord.map((p) => {
+      const m = info[p.codigo] || {};
+      const hos = m.horas_os == null || m.horas_os === '' ? null : Number(m.horas_os);
+      const grupo = m.os ? maquinas.filter((o) => o.os === m.os) : [m];
+      const saldo = hos == null ? null : Math.round((hos - grupo.reduce((s, o) => s + acumA(o.codigo, p.fecha), 0)) * 10) / 10;
+      return { codigo: p.codigo, fecha: p.fecha, descripcion: p.descripcion || '—', horas: Number(p.horas), acumulado: Number(p.acumulado), saldo_os: saldo };
+    });
+  },
+});
+
+dash.calc('actividades', {
+  inputs: ['partes'],
+  title: 'Horas por actividad',
+  description: 'Horas de los partes con horas, sumadas por máquina y actividad.',
+  fn: (partes) => {
+    const g = {};
+    partes.filter((p) => Number(p.horas) > 0).forEach((p) => {
+      const a = p.descripcion || 'Sin descripción';
+      const k = p.codigo + '|' + a;
+      g[k] = g[k] || { codigo: p.codigo, actividad: a, horas: 0, dias: 0 };
+      g[k].horas += Number(p.horas); g[k].dias += 1;
+    });
+    return Object.values(g).map((r) => ({ ...r, horas: Math.round(r.horas * 10) / 10 }));
+  },
+});
+</script>
+
+<script>
+const ES = d3.timeFormatLocale({dateTime: '%d/%m/%Y %H:%M', date: '%d/%m/%Y', time: '%H:%M', periods: ['a. m.', 'p. m.'],
+  days: ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'], shortDays: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'],
+  months: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
+  shortMonths: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']});
+const fD = ES.utcFormat('%d/%m/%Y'), fDM = ES.utcFormat('%d %b'), fDL = ES.utcFormat('%A %d de %B de %Y');
+const h1 = d3.format(',.1f'), h0 = d3.format(',.0f'), pc = d3.format('.0%');
+const pd = (s) => new Date(s + 'T00:00:00Z');
+const fFH = (s) => { if (!s) return '—'; const [d, t] = String(s).split('T'); const p = d.split('-'); return p.length === 3 ? `${p[2]}/${p[1]}/${p[0]}` + (t ? ' ' + t.slice(0, 5) + ' h' : '') : s; };
+const SIT = {'Con saldo': 'var(--color-ok)', 'Por agotar': 'var(--color-warn)', 'Agotada': 'var(--cds-chart-status-critical)', 'Sin O.S.': 'var(--cds-chart-muted)'};
+const C_TRAB = () => dash.colors[0], C_SIN = 'var(--cds-chart-muted)';
+
+const ICO = {
+  excavadora: '<rect class="t" x="8" y="52" width="64" height="13" rx="6.5"/><rect class="b" x="14" y="36" width="50" height="15" rx="2"/><rect class="b" x="18" y="20" width="20" height="17" rx="2"/><rect class="g" x="22" y="23" width="12" height="9" rx="1"/><polyline class="s" points="56,38 84,12 104,34"/><path class="b" d="M98 32 L113 34 L109 50 L96 44 Z"/>',
+  tractor: '<rect class="t" x="14" y="50" width="70" height="15" rx="7.5"/><rect class="b" x="20" y="32" width="58" height="18" rx="2"/><rect class="b" x="24" y="14" width="24" height="19" rx="2"/><rect class="g" x="28" y="17" width="16" height="10" rx="1"/><line class="s" x1="76" y1="44" x2="92" y2="48"/><path class="b" d="M92 28 L100 30 L102 66 L90 66 Z"/><path class="b" d="M16 50 L6 62 L11 64 L20 54 Z"/>',
+  cargador: '<rect class="b" x="18" y="34" width="62" height="16" rx="2"/><rect class="b" x="30" y="12" width="24" height="23" rx="2"/><rect class="g" x="34" y="15" width="16" height="11" rx="1"/><polyline class="s" points="72,38 96,46"/><path class="b" d="M96 40 L116 44 L114 62 L98 62 Z"/><circle class="t" cx="34" cy="54" r="12"/><circle class="t" cx="74" cy="54" r="12"/><circle class="g" cx="34" cy="54" r="4"/><circle class="g" cx="74" cy="54" r="4"/>',
+  rodillo: '<rect class="b" x="14" y="34" width="56" height="14" rx="2"/><rect class="b" x="22" y="12" width="24" height="23" rx="2"/><rect class="g" x="26" y="15" width="16" height="11" rx="1"/><path class="b" d="M68 36 L84 30 L100 30 L100 40 L68 42 Z"/><circle class="t" cx="28" cy="55" r="11"/><circle class="g" cx="28" cy="55" r="4"/><circle class="t" cx="92" cy="50" r="16"/><circle class="b" cx="92" cy="50" r="9"/>',
+  motoniveladora: '<path class="b" d="M8 30 H42 V46 H8 Z"/><rect class="b" x="12" y="12" width="22" height="19" rx="2"/><rect class="g" x="16" y="15" width="14" height="10" rx="1"/><line class="s" x1="40" y1="32" x2="106" y2="32"/><line class="s" x1="106" y1="32" x2="106" y2="48"/><line class="s" x1="70" y1="34" x2="72" y2="50"/><path class="t" d="M56 52 L86 47 L88 53 L58 58 Z"/><circle class="t" cx="18" cy="57" r="9"/><circle class="t" cx="38" cy="57" r="9"/><circle class="t" cx="106" cy="57" r="9"/>',
+  volquete: '<path class="b" d="M8 18 H82 L78 46 H12 Z"/><rect class="t" x="8" y="46" width="104" height="5" rx="2"/><path class="b" d="M86 24 H104 L112 36 V46 H86 Z"/><path class="g" d="M90 27 H102 L107 35 H90 Z"/><circle class="t" cx="24" cy="57" r="9"/><circle class="t" cx="44" cy="57" r="9"/><circle class="t" cx="100" cy="57" r="9"/>',
+  retro: '<rect class="b" x="30" y="34" width="54" height="16" rx="2"/><rect class="b" x="40" y="12" width="26" height="23" rx="2"/><rect class="g" x="44" y="15" width="18" height="11" rx="1"/><polyline class="s" points="80,40 98,46"/><path class="b" d="M94 40 L112 44 L110 60 L96 60 Z"/><polyline class="s" points="32,38 16,16 8,38"/><path class="b" d="M3 36 L13 38 L11 50 L3 46 Z"/><circle class="t" cx="42" cy="55" r="11"/><circle class="t" cx="76" cy="57" r="9"/>',
+};
+function imagen(box, m) {
+  box.replaceChildren();
+  if (m.foto && String(m.foto).startsWith('data:image/')) {
+    const img = document.createElement('img'); img.src = m.foto; img.alt = m.nombre; box.append(img); return;
+  }
+  box.innerHTML = '<svg class="mq-ico" viewBox="0 0 120 72" role="img" aria-label="' + (ICO[m.icono] ? m.icono : 'maquinaria') + '">' + (ICO[m.icono] || ICO.cargador) + '<line class="gl" x1="0" y1="67" x2="120" y2="67"/></svg>';
+}
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+const where = (code) => 'codigo=' + encodeURIComponent(code);
+const mark = (e, src, field, code) => { e.setAttribute('data-source', src); e.setAttribute('data-field', field); if (code != null) e.setAttribute('data-where', where(code)); return e; };
+const fail = (box) => { box.replaceChildren(el('div', 'mq-fail', 'No se pudo cargar')); };
+const unskel = (...els) => els.forEach((e) => e && e.classList.remove('dash-skeleton'));
+const colorMaq = (res) => { const m = {}; (res.status === 'ok' ? res.data : []).slice().sort((a, b) => a.orden - b.orden).forEach((r, i) => { m[r.codigo] = dash.colors[i % dash.colors.length]; }); return m; };
+function axisClean(g) { g.attr('font-size', null).attr('font-family', null); g.select('.domain').attr('stroke', 'var(--cds-chart-axis)'); g.selectAll('.tick line').attr('stroke', 'var(--cds-chart-grid)'); }
+function tipFor(box) {
+  let t = box.querySelector('.mq-tip');
+  if (!t) { t = el('div', 'mq-tip'); t.hidden = true; box.append(t); }
+  return {
+    show(x, y, head, lines) {
+      t.replaceChildren(el('div', 'h', head));
+      lines.forEach(([c, txt]) => { const d = el('div'); if (c) { const s = el('i', 'mq-sw'); s.style.background = c; d.append(s); } d.append(txt); t.append(d); });
+      t.hidden = false;
+      const w = t.offsetWidth, W = box.clientWidth;
+      t.style.left = Math.max(0, Math.min(W - w, x + 12)) + 'px';
+      t.style.top = Math.max(0, y - t.offsetHeight - 8) + 'px';
+    },
+    hide() { t.hidden = true; },
+  };
+}
+function yAxisLeft(svg, y, fmt) {
+  const ya = svg.append('g').call(d3.axisLeft(y).ticks(5).tickFormat(fmt).tickSize(0));
+  let ml = 0; ya.selectAll('text').each(function () { ml = Math.max(ml, this.getComputedTextLength()); }); ml += 10;
+  ya.attr('transform', `translate(${ml - 6},0)`).call(axisClean); ya.select('.domain').remove();
+  return ml;
+}
+
+const abrir = (code) => { dash.setParams({maq: code}); document.getElementById('dash-root').scrollIntoView({block: 'start'}); };
+document.getElementById('volver').addEventListener('click', () => dash.setParams({maq: null}));
+
+/* ---------- Actualización ---------- */
+function drawActualizacion(act) {
+  const box = document.getElementById('actualizacion');
+  const av = document.getElementById('avisos');
+  box.querySelectorAll('[data-field]').forEach((b) => {
+    if (act.status === 'error') { unskel(b); b.textContent = 'No se pudo cargar'; return; }
+    if (act.status !== 'ok' || !act.data.length) return;
+    unskel(b);
+    const v = act.data[0][b.dataset.field];
+    b.textContent = b.dataset.field === 'archivo' ? (v || '—') : fFH(v);
+  });
+  if (act.status === 'ok' && act.data.length && Number(act.data[0].avisos) > 0) {
+    av.hidden = false;
+    av.textContent = 'Revisar en el archivo: ' + act.data[0].detalle_avisos;
+  } else av.hidden = true;
+}
+
+/* ---------- Página principal ---------- */
+function drawFlota(res) {
+  const box = document.getElementById('flota');
+  if (res.status === 'error') { unskel(box); return fail(box); }
+  if (res.status !== 'ok') return;
+  unskel(box); box.replaceChildren();
+  res.data.slice().sort((a, b) => a.orden - b.orden).forEach((m) => {
+    const c = el('div', 'mq-box mq-card'); c.tabIndex = 0; c.setAttribute('role', 'button');
+    c.setAttribute('aria-label', 'Ver detalle de ' + m.nombre);
+    c.addEventListener('click', () => abrir(m.codigo));
+    c.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrir(m.codigo); } });
+    const img = el('div', 'mq-img'); imagen(img, m);
+    const top = el('div', 'mq-row');
+    const os = el('span', 'mq-os', m.os ? 'O.S. ' + m.os + (m.comparte_con !== 'Ninguna' ? ' · compartida' : '') : 'Sin orden de servicio');
+    const chip = mark(el('span', 'mq-chip', m.situacion), 'resumen', 'situacion', m.codigo); chip.dataset.sit = m.situacion;
+    top.append(os, chip);
+    const tipo = mark(el('h3', null, m.tipo), 'resumen', 'tipo', m.codigo);
+    const mm = mark(el('p', 'mq-mm', m.detalle), 'resumen', 'detalle', m.codigo);
+    const sal = el('div');
+    const v = el('div', 'mq-saldo');
+    if (m.saldo == null) { v.append(el('span', null, '—')); }
+    else { v.append(mark(el('span', null, h1(m.saldo)), 'resumen', 'saldo', m.codigo), el('span', 'mq-unit', 'h')); if (m.situacion !== 'Con saldo') v.style.color = SIT[m.situacion]; }
+    sal.append(el('div', 'mq-kpi-label', m.saldo == null ? 'Saldo de horas: sin horas asignadas' : 'Saldo de horas de la O.S.'), v);
+    const tr = el('div', 'mq-track'); const f = el('div', 'mq-fill');
+    f.style.width = Math.min(1, m.avance || 0) * 100 + '%'; f.style.background = m.situacion === 'Con saldo' ? C_TRAB() : SIT[m.situacion]; tr.append(f);
+    const sub = el('div', 'mq-kpi-sub');
+    sub.append('Acumulado ', mark(el('span', null, h1(m.acumulado)), 'resumen', 'acumulado', m.codigo), ' h');
+    if (m.horas_os != null) sub.append(' · O.S. ', mark(el('span', null, h1(m.consumo_os)), 'resumen', 'consumo_os', m.codigo), ' de ', mark(el('span', null, h0(m.horas_os)), 'resumen', 'horas_os', m.codigo), ' h');
+    c.append(img, top, tipo, mm, sal, tr, sub);
+    box.append(c);
+  });
+}
+
+function drawOrdenes(ord) {
+  const box = document.getElementById('chart-ordenes');
+  if (ord.status === 'error') { unskel(box); return fail(box); }
+  if (ord.status !== 'ok') return;
+  unskel(box); box.replaceChildren();
+  const rows = ord.data.slice().sort((a, b) => a.saldo - b.saldo);
+  const W = box.clientWidth || 600, rowH = 46, H = Math.max(rowH, rows.length * rowH);
+  const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+  const ends = svg.selectAll('text.end').data(rows).join('text').attr('class', 'end lbl').text((d) => d.saldo <= 0 ? 'Agotada' : 'Saldo ' + h1(d.saldo) + ' h');
+  let ew = 0; ends.each(function () { ew = Math.max(ew, this.getComputedTextLength()); });
+  const x = d3.scaleLinear([0, d3.max(rows, (d) => Math.max(d.horas_os, d.consumo_os)) || 1], [0, Math.max(60, W - ew - 10)]);
+  const g = svg.selectAll('g.r').data(rows).join('g').attr('class', 'r').attr('transform', (d, i) => `translate(0,${i * rowH})`).style('cursor', 'pointer').on('click', (e, d) => abrir(d.primera));
+  g.append('text').attr('y', 12).text((d) => 'O.S. ' + d.os + ' · ' + d.maquinas)
+    .each(function (d) { if (this.getComputedTextLength() > W) d3.select(this).text('O.S. ' + d.os + ' · ' + d.maquinas.split(' + ').length + (d.maquinas.includes(' + ') ? ' máquinas' : ' máquina')); });
+  g.append('rect').attr('y', 20).attr('height', 14).attr('rx', 4).attr('width', (d) => x(d.horas_os)).attr('fill', 'var(--cds-chart-muted)').attr('opacity', 0.35);
+  g.append('rect').attr('y', 20).attr('height', 14).attr('rx', 4).attr('width', (d) => x(Math.min(d.consumo_os, Math.max(d.horas_os, d.consumo_os)))).attr('fill', (d) => d.situacion === 'Con saldo' ? C_TRAB() : SIT[d.situacion]);
+  ends.attr('x', (d) => x(Math.max(d.horas_os, d.consumo_os)) + 8).attr('y', (d, i) => i * rowH + 31).style('fill', (d) => d.situacion === 'Con saldo' ? 'var(--color-fg)' : SIT[d.situacion]);
+  box.style.minHeight = H + 'px';
+}
+
+function drawFlotaDia(det, res) {
+  const box = document.getElementById('chart-flota-dia');
+  const leg = document.getElementById('leg-flota');
+  if (det.status === 'error' || res.status === 'error') { unskel(box); return fail(box); }
+  if (det.status !== 'ok' || res.status !== 'ok') return;
+  unskel(box); box.replaceChildren();
+  const col = colorMaq(res);
+  const maqs = res.data.slice().sort((a, b) => a.orden - b.orden);
+  leg.replaceChildren(...maqs.map((m) => { const s = el('span'); const w = el('i', 'mq-sw'); w.style.background = col[m.codigo]; s.append(w, m.tipo + ' ' + (m.detalle !== '—' ? m.detalle : '')); return s; }));
+  const fechas = Array.from(new Set(det.data.map((r) => r.fecha))).sort();
+  if (!fechas.length) return;
+  const keys = maqs.map((m) => m.codigo);
+  const tabla = fechas.map((f) => { const o = {fecha: f}; keys.forEach((k) => { o[k] = 0; }); det.data.filter((r) => r.fecha === f).forEach((r) => { o[r.codigo] = r.horas; }); return o; });
+  const series = d3.stack().keys(keys)(tabla);
+  const W = box.clientWidth || 600, H = 240, mt = 12, mb = 28, mr = 6;
+  const y = d3.scaleLinear([0, Math.max(8, d3.max(tabla, (o) => keys.reduce((s, k) => s + o[k], 0)))], [H - mb, mt]).nice();
+  const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+  const ml = yAxisLeft(svg, y, h0);
+  svg.insert('g', ':first-child').selectAll('line').data(y.ticks(5)).join('line').attr('x1', ml).attr('x2', W - mr).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
+  const x = d3.scaleBand(fechas, [ml, W - mr]).padding(0.25);
+  const xt = d3.scaleUtc([pd(fechas[0]), pd(fechas[fechas.length - 1])], [ml + x.bandwidth() / 2, W - mr - x.bandwidth() / 2]);
+  svg.append('g').attr('transform', `translate(0,${H - mb})`).call(d3.axisBottom(xt).ticks(Math.max(2, Math.min(fechas.length, Math.floor(W / 90)))).tickFormat(fDM).tickSizeOuter(0)).call(axisClean);
+  svg.append('g').selectAll('g').data(series).join('g').attr('fill', (s) => col[s.key])
+    .selectAll('rect').data((s) => s).join('rect')
+    .attr('x', (d) => x(d.data.fecha)).attr('width', x.bandwidth()).attr('y', (d) => y(d[1])).attr('height', (d) => Math.max(0, y(d[0]) - y(d[1])));
+  const tip = tipFor(box);
+  svg.append('rect').attr('x', ml).attr('y', mt).attr('width', W - mr - ml).attr('height', H - mt - mb).attr('fill', 'transparent')
+    .on('mousemove', (e) => {
+      const [mx] = d3.pointer(e); const i = Math.max(0, Math.min(fechas.length - 1, Math.floor((mx - ml) / x.step()))); const o = tabla[i];
+      const tot = keys.reduce((s, k) => s + o[k], 0); const k = box.clientWidth / W;
+      tip.show((x(o.fecha) + x.bandwidth() / 2) * k, y(tot) * k, fDL(pd(o.fecha)), [[null, 'Total: ' + h1(tot) + ' h'], ...maqs.filter((m) => o[m.codigo] > 0).map((m) => [col[m.codigo], m.tipo + ' ' + m.detalle + ': ' + h1(o[m.codigo]) + ' h'])]);
+    })
+    .on('mouseleave', () => tip.hide());
+  box.style.minHeight = '0';
+}
+
+function drawKpisFlota(tot) {
+  document.querySelectorAll('#kpis-flota [data-source="totales"]').forEach((s) => {
+    if (tot.status !== 'ok') { if (tot.status === 'error') { unskel(s); s.textContent = '—'; } return; }
+    unskel(s);
+    const k = s.dataset.field, v = tot.data[0][k];
+    s.textContent = k === 'avance' ? pc(v) : ['en_alerta', 'maquinas', 'ordenes', 'horas_os'].includes(k) ? h0(v) : h1(v);
+  });
+}
+
+/* ---------- Ficha de máquina ---------- */
+function drawFicha(code, res, det, act) {
+  const m = res.status === 'ok' ? res.data.find((r) => r.codigo === code) : null;
+  if (res.status === 'ok' && !m) { dash.setParams({maq: null}); return; }
+  ['f-sit', 'f-nombre', 'f-tipo', 'f-detalle', 'f-os', 'f-horas-os', 'f-comparte', 'f-ultimo'].forEach((id) => { const e = document.getElementById(id); e.setAttribute('data-where', where(code)); });
+  document.querySelectorAll('#kpis-maquina .fk').forEach((s) => { s.setAttribute('data-source', 'resumen'); s.setAttribute('data-where', where(code)); });
+  if (!m) return;
+  imagen(document.getElementById('f-img'), m);
+  const sit = document.getElementById('f-sit'); sit.textContent = m.situacion; sit.dataset.sit = m.situacion;
+  document.getElementById('f-nombre').textContent = m.nombre;
+  document.getElementById('f-tipo').textContent = m.tipo;
+  document.getElementById('f-detalle').textContent = m.detalle;
+  document.getElementById('f-os').textContent = m.os || 'Sin orden de servicio';
+  document.getElementById('f-horas-os').textContent = m.horas_os == null ? '—' : h0(m.horas_os);
+  document.getElementById('f-comparte').textContent = m.comparte_con;
+  document.getElementById('f-ultimo').textContent = m.ultimo_parte ? fD(pd(m.ultimo_parte)) : '—';
+  document.querySelectorAll('#kpis-maquina .fk').forEach((s) => {
+    const k = s.dataset.field, v = m[k];
+    s.textContent = v == null ? '—' : k === 'avance' ? pc(v) : ['dias_para_agotar', 'dias_trabajados', 'dias_registrados'].includes(k) ? h0(v) : h1(v);
+    s.style.color = k === 'saldo' && m.situacion !== 'Con saldo' ? SIT[m.situacion] : '';
+  });
+  const rows = det.status === 'ok' ? det.data.filter((r) => r.codigo === code) : [];
+  const grupo = res.status === 'ok' && m.os ? res.data.filter((o) => o.os === m.os) : [m];
+  drawAcum(det, rows, m, grupo);
+  drawDia(det, rows);
+  drawAct(act, act.status === 'ok' ? act.data.filter((r) => r.codigo === code) : []);
+  drawEstado(m, grupo);
+  drawTabla(det, rows);
+}
+
+function drawAcum(det, rows, m, grupo) {
+  const box = document.getElementById('chart-acum');
+  const leg = document.getElementById('leg-acum');
+  if (det.status === 'error') return fail(box);
+  box.replaceChildren(); leg.replaceChildren();
+  if (det.status !== 'ok' || !rows.length) return;
+  const compartida = grupo.length > 1;
+  const W = box.clientWidth || 600, H = 260, mt = 16, mb = 28, mr = 12;
+  const pts = rows.map((r) => ({d: pd(r.fecha), v: r.acumulado, r}));
+  // consumo total de la O.S. por fecha (horas O.S. − saldo)
+  const os = m.horas_os != null ? rows.filter((r) => r.saldo_os != null).map((r) => ({d: pd(r.fecha), v: Math.round((m.horas_os - r.saldo_os) * 10) / 10, r})) : [];
+  const ref = compartida ? os : pts;
+  const last = ref[ref.length - 1];
+  const ritmo = grupo.reduce((s, o) => s + o.promedio_diario, 0);
+  let proj = null;
+  if (m.horas_os != null && m.saldo > 0 && ritmo > 0 && last) {
+    const rate = ritmo * 6 / 7, dias = Math.min(120, (m.horas_os - last.v) / rate);
+    proj = [last, {d: new Date(+last.d + dias * 864e5), v: last.v + rate * dias}];
+  }
+  const xMax = proj ? proj[1].d : pts[pts.length - 1].d;
+  const yMax = Math.max(m.horas_os || 0, d3.max(pts, (p) => p.v), os.length ? d3.max(os, (p) => p.v) : 0) * 1.08 || 10;
+  const y = d3.scaleLinear([0, yMax], [H - mb, mt]).nice();
+  const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+  const ml = yAxisLeft(svg, y, h0);
+  const x = d3.scaleUtc([pts[0].d, xMax], [ml, W - mr]);
+  svg.insert('g', ':first-child').selectAll('line').data(y.ticks(5)).join('line').attr('x1', ml).attr('x2', W - mr).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
+  svg.append('g').attr('transform', `translate(0,${H - mb})`).call(d3.axisBottom(x).ticks(Math.max(2, Math.floor(W / 110))).tickFormat(fDM).tickSizeOuter(0)).call(axisClean);
+  if (m.horas_os != null) {
+    svg.append('line').attr('x1', ml).attr('x2', W - mr).attr('y1', y(m.horas_os)).attr('y2', y(m.horas_os)).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '4 4');
+    svg.append('text').attr('x', ml + 4).attr('y', y(m.horas_os) - 6).text('Horas O.S. ' + m.os + ': ' + h0(m.horas_os) + ' h');
+  }
+  const line = d3.line((p) => x(p.d), (p) => y(p.v));
+  const items = [[dash.colors[0], 'Acumulado de la máquina']];
+  if (compartida && os.length) {
+    svg.append('path').datum(os).attr('fill', 'none').attr('stroke', dash.colors[1]).attr('stroke-width', 2).attr('stroke-linejoin', 'round').attr('stroke-linecap', 'round').attr('d', line);
+    items.push([dash.colors[1], 'Acumulado total de la O.S. (' + grupo.length + ' máquinas)']);
+  }
+  svg.append('path').datum(pts).attr('fill', 'none').attr('stroke', dash.colors[0]).attr('stroke-width', 2).attr('stroke-linejoin', 'round').attr('stroke-linecap', 'round').attr('d', line);
+  if (proj) {
+    const pc_ = compartida ? dash.colors[1] : dash.colors[0];
+    svg.append('path').datum(proj).attr('fill', 'none').attr('stroke', pc_).attr('stroke-width', 2).attr('stroke-dasharray', '5 5').attr('opacity', 0.7).attr('d', line);
+    svg.append('text').attr('class', 'lbl').attr('x', x(proj[1].d)).attr('y', y(proj[1].v) + 16).attr('text-anchor', 'end').text((proj[1].v >= m.horas_os - 0.5 ? 'Se agota ~' : 'Proyección ') + fDM(proj[1].d));
+    items.push([null, 'Discontinua: proyección']);
+  }
+  leg.replaceChildren(...items.map(([c, t]) => { const s = el('span'); if (c) { const w = el('i', 'mq-sw'); w.style.background = c; s.append(w); } s.append(t); return s; }));
+  const dot = svg.append('circle').attr('r', 4).attr('fill', dash.colors[0]).attr('stroke', 'var(--color-panel)').attr('stroke-width', 2).attr('opacity', 0);
+  const tip = tipFor(box); const bis = d3.bisector((p) => p.d).center;
+  svg.append('rect').attr('x', ml).attr('y', mt).attr('width', Math.max(0, x(pts[pts.length - 1].d) - ml)).attr('height', H - mt - mb).attr('fill', 'transparent')
+    .on('mousemove', (e) => {
+      const [mx] = d3.pointer(e); const p = pts[bis(pts, x.invert(mx))];
+      dot.attr('cx', x(p.d)).attr('cy', y(p.v)).attr('opacity', 1);
+      const k = box.clientWidth / W;
+      const ln = [[dash.colors[0], 'Acumulado máquina: ' + h1(p.v) + ' h'], [null, 'Horas del día: ' + h1(p.r.horas) + ' h']];
+      if (p.r.saldo_os != null) ln.push([null, 'Saldo O.S.: ' + h1(p.r.saldo_os) + ' h']);
+      tip.show(x(p.d) * k, y(p.v) * k, fDL(p.d), ln);
+    })
+    .on('mouseleave', () => { dot.attr('opacity', 0); tip.hide(); });
+  box.style.minHeight = '0';
+}
+
+function drawDia(det, rows) {
+  const box = document.getElementById('chart-dia');
+  const leg = document.getElementById('leg-dia');
+  leg.replaceChildren(...[[C_TRAB(), 'Con horas'], [C_SIN, 'Con parte, sin horas']].map(([c, t]) => { const s = el('span'); const w = el('i', 'mq-sw'); w.style.background = c; s.append(w, t); return s; }));
+  if (det.status === 'error') return fail(box);
+  box.replaceChildren();
+  if (det.status !== 'ok' || !rows.length) return;
+  const W = box.clientWidth || 600, H = 240, mt = 12, mb = 28, mr = 6;
+  const y = d3.scaleLinear([0, Math.max(10, d3.max(rows, (r) => r.horas))], [H - mb, mt]).nice();
+  const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+  const ml = yAxisLeft(svg, y, h0);
+  svg.insert('g', ':first-child').selectAll('line').data(y.ticks(5)).join('line').attr('x1', ml).attr('x2', W - mr).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
+  const x = d3.scaleBand(rows.map((r) => r.fecha), [ml, W - mr]).padding(0.25);
+  const xt = d3.scaleUtc([pd(rows[0].fecha), pd(rows[rows.length - 1].fecha)], [ml + x.bandwidth() / 2, W - mr - x.bandwidth() / 2]);
+  svg.append('g').attr('transform', `translate(0,${H - mb})`).call(d3.axisBottom(xt).ticks(Math.max(2, Math.min(rows.length, Math.floor(W / 90)))).tickFormat(fDM).tickSizeOuter(0)).call(axisClean);
+  const bw = Math.min(32, x.bandwidth()), off = (x.bandwidth() - bw) / 2;
+  svg.append('g').selectAll('rect').data(rows).join('rect')
+    .attr('x', (r) => x(r.fecha) + off).attr('width', bw)
+    .attr('y', (r) => r.horas > 0 ? y(r.horas) : H - mb - 4).attr('height', (r) => r.horas > 0 ? H - mb - y(r.horas) : 4)
+    .attr('rx', Math.min(4, bw / 2)).attr('fill', (r) => r.horas > 0 ? C_TRAB() : C_SIN);
+  svg.append('g').selectAll('text').data(rows.filter((r) => r.horas > 0 && bw >= 18)).join('text').attr('class', 'lbl')
+    .attr('x', (r) => x(r.fecha) + x.bandwidth() / 2).attr('y', (r) => y(r.horas) - 4).attr('text-anchor', 'middle').text((r) => h1(r.horas));
+  const tip = tipFor(box);
+  svg.append('rect').attr('x', ml).attr('y', mt).attr('width', W - mr - ml).attr('height', H - mt - mb).attr('fill', 'transparent')
+    .on('mousemove', (e) => {
+      const [mx] = d3.pointer(e); const i = Math.max(0, Math.min(rows.length - 1, Math.floor((mx - ml) / x.step()))); const r = rows[i];
+      const k = box.clientWidth / W;
+      tip.show((x(r.fecha) + x.bandwidth() / 2) * k, y(Math.max(r.horas, 1)) * k, fDL(pd(r.fecha)), [[r.horas > 0 ? C_TRAB() : C_SIN, h1(r.horas) + ' h'], [null, r.descripcion]]);
+    })
+    .on('mouseleave', () => tip.hide());
+  box.style.minHeight = '0';
+}
+
+function drawAct(act, rows) {
+  const box = document.getElementById('chart-act');
+  if (act.status === 'error') return fail(box);
+  box.replaceChildren();
+  if (act.status !== 'ok') return;
+  if (!rows.length) { box.append(el('p', 'mq-note', 'Aún no hay horas registradas para esta máquina.')); box.style.minHeight = '0'; return; }
+  rows = rows.slice().sort((a, b) => b.horas - a.horas);
+  const W = box.clientWidth || 600, rowH = 40, H = rows.length * rowH;
+  const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+  const ends = svg.selectAll('text.end').data(rows).join('text').attr('class', 'end lbl').text((d) => h1(d.horas) + ' h · ' + d.dias + (d.dias === 1 ? ' día' : ' días'));
+  let ew = 0; ends.each(function () { ew = Math.max(ew, this.getComputedTextLength()); });
+  const x = d3.scaleLinear([0, d3.max(rows, (d) => d.horas)], [0, Math.max(60, W - ew - 10)]);
+  const g = svg.selectAll('g.r').data(rows).join('g').attr('transform', (d, i) => `translate(0,${i * rowH})`);
+  g.append('text').attr('y', 12).text((d) => d.actividad);
+  g.append('rect').attr('y', 18).attr('height', 14).attr('rx', 4).attr('width', (d) => Math.max(2, x(d.horas))).attr('fill', (d, i) => i === 0 ? C_TRAB() : 'var(--cds-chart-muted)');
+  ends.attr('x', (d) => x(d.horas) + 8).attr('y', (d, i) => i * rowH + 30);
+  box.style.minHeight = '0';
+}
+
+function drawEstado(m, grupo) {
+  const box = document.getElementById('chart-estado');
+  box.replaceChildren();
+  if (m.horas_os != null) {
+    const otros = Math.max(0, m.consumo_os - m.acumulado), saldo = Math.max(0, m.saldo);
+    const tot = Math.max(m.horas_os, m.consumo_os) || 1;
+    const partes = [[C_TRAB(), 'Esta máquina', m.acumulado], ...(grupo.length > 1 ? [[dash.colors[1], 'Otras máquinas de la O.S.', otros]] : []), [C_SIN, 'Saldo', saldo]];
+    box.append(el('div', 'mq-kpi-label', 'Horas de la O.S. ' + m.os + ' (' + h0(m.horas_os) + ' h)'));
+    const stack = el('div', 'mq-stack');
+    partes.forEach(([c, t, v]) => { const s = el('div'); s.style.width = (v / tot * 100) + '%'; s.style.background = c; s.title = t; stack.append(s); });
+    const grid = el('div', 'mq-estados');
+    partes.forEach(([c, t, v]) => {
+      const d = el('div'); const lab = el('div', 'mq-kpi-label'); const sw = el('i', 'mq-sw'); sw.style.background = c; lab.append(sw, t);
+      const val = el('div', 'v'); val.append(el('span', null, h1(v)), el('span', 'mq-unit', 'h'));
+      d.append(lab, val, el('div', 'mq-kpi-sub', pc(v / tot) + ' de la O.S.')); grid.append(d);
+    });
+    box.append(stack, grid);
+  } else {
+    box.append(el('p', 'mq-note', 'Esta máquina no tiene orden de servicio ni horas asignadas en el archivo; se muestran solo sus horas trabajadas.'));
+  }
+  const n = m.dias_registrados || 0;
+  const hab = m.dias_sin_trabajo - m.domingos_sin_trabajo;
+  const nota = el('p', 'mq-note'); nota.style.marginTop = 'var(--cds-gap-md)';
+  nota.textContent = `Días con parte: ${h0(n)}. Trabajó ${h0(m.dias_trabajados)} (${n ? pc(m.dias_trabajados / n) : '—'}); sin horas ${h0(m.dias_sin_trabajo)}, de los cuales ${h0(hab)} fueron días hábiles y ${h0(m.domingos_sin_trabajo)} domingos.` +
+    (m.arrastre_periodo ? ` Arrastre de ${m.arrastre_periodo.toLowerCase()}: ${h1(m.arrastre_horas)} h.` : '') +
+    (m.ultima_actividad ? ` Última actividad: ${m.ultima_actividad.toLowerCase()}.` : '');
+  box.append(nota);
+}
+
+let sortK = 'fecha', sortDir = -1, filtro = '', ultimaTabla = [];
+document.querySelectorAll('#tabla th button').forEach((b) => b.addEventListener('click', () => {
+  const k = b.dataset.k; if (sortK === k) sortDir = -sortDir; else { sortK = k; sortDir = k === 'fecha' ? -1 : 1; }
+  pintarTabla();
+}));
+const buscar = document.getElementById('buscar');
+buscar.addEventListener('input', () => { filtro = buscar.value.trim().toLowerCase(); pintarTabla(); });
+function pintarTabla() {
+  const tb = document.querySelector('#tabla tbody');
+  let rows = ultimaTabla;
+  if (filtro) rows = rows.filter((r) => [r.fecha, fD(pd(r.fecha)), fDL(pd(r.fecha)), r.descripcion].join(' ').toLowerCase().includes(filtro));
+  const num = ['horas', 'acumulado', 'saldo_os'].includes(sortK);
+  rows = rows.slice().sort((a, b) => (num ? (a[sortK] ?? -1e9) - (b[sortK] ?? -1e9) : String(a[sortK]).localeCompare(String(b[sortK]))) * sortDir);
+  document.querySelectorAll('#tabla th').forEach((th) => th.setAttribute('aria-sort', th.dataset.field === sortK ? (sortDir > 0 ? 'ascending' : 'descending') : 'none'));
+  tb.replaceChildren(...rows.map((r) => {
+    const tr = el('tr'); tr.dataset.key = encodeURIComponent(r.codigo) + ',' + encodeURIComponent(r.fecha);
+    const d = el('td'); const dt = el('i', 'mq-dot'); dt.style.background = r.horas > 0 ? C_TRAB() : C_SIN; d.append(dt, r.descripcion);
+    tr.append(el('td', null, fD(pd(r.fecha))), d, el('td', 'n', h1(r.horas)), el('td', 'n', h1(r.acumulado)), el('td', 'n', r.saldo_os == null ? '—' : h1(r.saldo_os)));
+    return tr;
+  }));
+  document.getElementById('tabla-nota').textContent = rows.length + ' partes' + (filtro ? ' coinciden con la búsqueda' : '') + (ultimaTabla.length ? ' · del ' + fD(pd(ultimaTabla[0].fecha)) + ' al ' + fD(pd(ultimaTabla[ultimaTabla.length - 1].fecha)) : '');
+}
+function drawTabla(det, rows) {
+  if (det.status === 'error') { document.querySelector('#tabla tbody').replaceChildren(); document.getElementById('tabla-nota').textContent = 'No se pudo cargar'; return; }
+  ultimaTabla = rows; pintarTabla();
+}
+
+/* ---------- Texto de situación ---------- */
+function drawTexto(tot, res, maq) {
+  const p = document.getElementById('resumen-texto');
+  if (tot.status !== 'ok' || res.status !== 'ok') { if (tot.status === 'error' || res.status === 'error') { unskel(p); p.textContent = ''; } return; }
+  unskel(p);
+  if (maq) {
+    const r = res.data.find((x) => x.codigo === maq);
+    if (!r) return;
+    p.textContent = r.situacion === 'Sin O.S.' ? `${r.nombre} aún no tiene orden de servicio ni horas asignadas; lleva ${h1(r.acumulado)} h trabajadas.`
+      : r.situacion === 'Agotada' ? `${r.nombre}: la O.S. ${r.os} agotó sus ${h0(r.horas_os)} h. Requiere ampliar la orden de servicio o retirar la máquina.`
+      : `${r.nombre}: a la O.S. ${r.os} le quedan ${h1(r.saldo)} h (${pc(1 - r.avance)} de ${h0(r.horas_os)} h)` + (r.dias_para_agotar ? `; al ritmo actual alcanzan para unos ${h0(r.dias_para_agotar)} días de trabajo.` : '.');
+    return;
+  }
+  const t = tot.data[0];
+  const ag = res.data.filter((x) => x.situacion === 'Agotada').map((x) => x.nombre);
+  const pa = res.data.filter((x) => x.situacion === 'Por agotar').map((x) => x.nombre);
+  const so = res.data.filter((x) => x.situacion === 'Sin O.S.').map((x) => x.nombre);
+  p.textContent = `Las ${h0(t.ordenes)} órdenes de servicio suman ${h0(t.horas_os)} h, con ${h1(t.consumidas)} h acumuladas y un saldo de ${h1(t.saldo)} h (${pc(1 - t.avance)}).` +
+    (ag.length ? ` Agotada: ${ag.join(', ')}.` : '') + (pa.length ? ` Por agotar: ${pa.join(', ')}.` : '') + (so.length ? ` Sin orden de servicio: ${so.join(', ')}.` : '');
+}
+
+dash.onData(() => {
+  const res = dash.data('resumen'), tot = dash.data('totales');
+  const maq = dash.params().maq || null;
+  document.getElementById('inicio').hidden = !!maq;
+  document.getElementById('ficha-maquina').hidden = !maq;
+  drawActualizacion(dash.data('actualizacion'));
+  drawTexto(tot, res, maq);
+  if (!maq) {
+    drawKpisFlota(tot); drawFlota(res); drawOrdenes(dash.data('ordenes')); drawFlotaDia(dash.data('detalle'), res);
+  } else {
+    drawFicha(maq, res, dash.data('detalle'), dash.data('actividades'));
+  }
+});
+</script>
