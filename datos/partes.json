@@ -261,6 +261,42 @@
   "trabajo": true
  },
  {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-16",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 8.2,
+  "acumulado": 100.4,
+  "saldo_archivo": 139.6,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-17",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 3.7,
+  "acumulado": 104.1,
+  "saldo_archivo": 135.9,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-18",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 104.1,
+  "saldo_archivo": 135.9,
+  "trabajo": false
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-19",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 2.1,
+  "acumulado": 106.2,
+  "saldo_archivo": 133.8,
+  "trabajo": true
+ },
+ {
   "codigo": "volquete-n01-cll-702",
   "fecha": "2026-10-01",
   "descripcion": "Extraccion y preparacion de material",
@@ -392,6 +428,42 @@
   "descripcion": "Transporte de material de relleno",
   "horas": 8.3,
   "acumulado": 71.7,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-16",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 4.4,
+  "acumulado": 76.1,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-17",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 3.4,
+  "acumulado": 79.5,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-18",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 79.5,
+  "saldo_archivo": null,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-19",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 3.3,
+  "acumulado": 82.8,
   "saldo_archivo": null,
   "trabajo": true
  },
@@ -531,6 +603,15 @@
   "trabajo": true
  },
  {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-16",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 3.1,
+  "acumulado": 71.6,
+  "saldo_archivo": 100.3,
+  "trabajo": true
+ },
+ {
   "codigo": "rodillo-compactador",
   "fecha": "2026-10-06",
   "descripcion": "COMPACTADO DE RELLENO",
@@ -621,11 +702,83 @@
   "trabajo": true
  },
  {
+  "codigo": "rodillo-compactador",
+  "fecha": "2026-10-16",
+  "descripcion": "COMPACTADO DE RELLENO",
+  "horas": 2.8,
+  "acumulado": 26.3,
+  "saldo_archivo": 178.7,
+  "trabajo": true
+ },
+ {
+  "codigo": "rodillo-compactador",
+  "fecha": "2026-10-17",
+  "descripcion": "COMPACTADO DE RELLENO",
+  "horas": 3.4,
+  "acumulado": 29.7,
+  "saldo_archivo": 175.3,
+  "trabajo": true
+ },
+ {
+  "codigo": "rodillo-compactador",
+  "fecha": "2026-10-18",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 29.7,
+  "saldo_archivo": 175.3,
+  "trabajo": false
+ },
+ {
+  "codigo": "rodillo-compactador",
+  "fecha": "2026-10-19",
+  "descripcion": "COMPACTADO DE RELLENO",
+  "horas": 4.4,
+  "acumulado": 34.1,
+  "saldo_archivo": 170.9,
+  "trabajo": true
+ },
+ {
   "codigo": "excavadora-virgo",
   "fecha": "2026-10-15",
   "descripcion": "PREPARACION DE MATERIAL SELECCIONADO",
   "horas": 7.8,
   "acumulado": 7.8,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "excavadora-virgo",
+  "fecha": "2026-10-16",
+  "descripcion": "ELIMINACION DE ATAGUIA",
+  "horas": 7.7,
+  "acumulado": 15.5,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "excavadora-virgo",
+  "fecha": "2026-10-17",
+  "descripcion": "RELLENO DE BLANQUET",
+  "horas": 3.7,
+  "acumulado": 19.2,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "excavadora-virgo",
+  "fecha": "2026-10-18",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 19.2,
+  "saldo_archivo": null,
+  "trabajo": false
+ },
+ {
+  "codigo": "excavadora-virgo",
+  "fecha": "2026-10-19",
+  "descripcion": "EXCAVACION Y ENROCADO EN TOMA DE LIMPIA",
+  "horas": 7.6,
+  "acumulado": 26.8,
   "saldo_archivo": null,
   "trabajo": true
  }
