@@ -297,6 +297,15 @@
   "trabajo": true
  },
  {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-20",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 2.7,
+  "acumulado": 108.9,
+  "saldo_archivo": 131.1,
+  "trabajo": true
+ },
+ {
   "codigo": "volquete-n01-cll-702",
   "fecha": "2026-10-01",
   "descripcion": "Extraccion y preparacion de material",
@@ -464,6 +473,15 @@
   "descripcion": "Transporte de material de relleno",
   "horas": 3.3,
   "acumulado": 82.8,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-20",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 2.0,
+  "acumulado": 84.8,
   "saldo_archivo": null,
   "trabajo": true
  },
@@ -738,6 +756,15 @@
   "trabajo": true
  },
  {
+  "codigo": "rodillo-compactador",
+  "fecha": "2026-10-20",
+  "descripcion": "COMPACTADO DE RELLENO",
+  "horas": 2.6,
+  "acumulado": 36.7,
+  "saldo_archivo": 168.3,
+  "trabajo": true
+ },
+ {
   "codigo": "excavadora-virgo",
   "fecha": "2026-10-15",
   "descripcion": "PREPARACION DE MATERIAL SELECCIONADO",
@@ -779,6 +806,15 @@
   "descripcion": "EXCAVACION Y ENROCADO EN TOMA DE LIMPIA",
   "horas": 7.6,
   "acumulado": 26.8,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "excavadora-virgo",
+  "fecha": "2026-10-20",
+  "descripcion": "EXCAVACION Y ENROCADO EN TOMA DE LIMPIA",
+  "horas": 2.8,
+  "acumulado": 29.6,
   "saldo_archivo": null,
   "trabajo": true
  }
