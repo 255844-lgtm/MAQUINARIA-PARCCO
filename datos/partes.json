@@ -486,6 +486,33 @@
   "trabajo": true
  },
  {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-21",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 7.3,
+  "acumulado": 92.1,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-22",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 8.6,
+  "acumulado": 100.7,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-23",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 4.3,
+  "acumulado": 105.0,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
   "codigo": "volquete-n01-cde-898",
   "fecha": "2026-10-01",
   "descripcion": "Extraccion y preparacion de material",
@@ -630,6 +657,69 @@
   "trabajo": true
  },
  {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-17",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 71.6,
+  "saldo_archivo": 96.9,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-18",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 71.6,
+  "saldo_archivo": 96.9,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-19",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 71.6,
+  "saldo_archivo": 93.6,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-20",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 71.6,
+  "saldo_archivo": 91.6,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-21",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 71.6,
+  "saldo_archivo": 84.3,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-22",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 8.1,
+  "acumulado": 79.7,
+  "saldo_archivo": 67.6,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-23",
+  "descripcion": "Transporte de material de relleno",
+  "horas": 4.2,
+  "acumulado": 83.9,
+  "saldo_archivo": 59.1,
+  "trabajo": true
+ },
+ {
   "codigo": "rodillo-compactador",
   "fecha": "2026-10-06",
   "descripcion": "COMPACTADO DE RELLENO",
@@ -770,7 +860,7 @@
   "descripcion": "PREPARACION DE MATERIAL SELECCIONADO",
   "horas": 7.8,
   "acumulado": 7.8,
-  "saldo_archivo": null,
+  "saldo_archivo": 82.44984878,
   "trabajo": true
  },
  {
@@ -779,7 +869,7 @@
   "descripcion": "ELIMINACION DE ATAGUIA",
   "horas": 7.7,
   "acumulado": 15.5,
-  "saldo_archivo": null,
+  "saldo_archivo": 74.74984878,
   "trabajo": true
  },
  {
@@ -788,7 +878,7 @@
   "descripcion": "RELLENO DE BLANQUET",
   "horas": 3.7,
   "acumulado": 19.2,
-  "saldo_archivo": null,
+  "saldo_archivo": 71.04984878,
   "trabajo": true
  },
  {
@@ -797,7 +887,7 @@
   "descripcion": "—",
   "horas": 0.0,
   "acumulado": 19.2,
-  "saldo_archivo": null,
+  "saldo_archivo": 71.04984878,
   "trabajo": false
  },
  {
@@ -806,7 +896,7 @@
   "descripcion": "EXCAVACION Y ENROCADO EN TOMA DE LIMPIA",
   "horas": 7.6,
   "acumulado": 26.8,
-  "saldo_archivo": null,
+  "saldo_archivo": 63.44984878,
   "trabajo": true
  },
  {
@@ -815,7 +905,34 @@
   "descripcion": "EXCAVACION Y ENROCADO EN TOMA DE LIMPIA",
   "horas": 2.8,
   "acumulado": 29.6,
-  "saldo_archivo": null,
+  "saldo_archivo": 60.64984878,
+  "trabajo": true
+ },
+ {
+  "codigo": "excavadora-virgo",
+  "fecha": "2026-10-21",
+  "descripcion": "EXCAVACION Y ENROCADO EN TOMA DE LIMPIA",
+  "horas": 8.3,
+  "acumulado": 37.9,
+  "saldo_archivo": 52.34984878,
+  "trabajo": true
+ },
+ {
+  "codigo": "excavadora-virgo",
+  "fecha": "2026-10-22",
+  "descripcion": "EXCAVACION Y ENROCADO EN TOMA DE LIMPIA",
+  "horas": 7.9,
+  "acumulado": 45.8,
+  "saldo_archivo": 44.44984878,
+  "trabajo": true
+ },
+ {
+  "codigo": "excavadora-virgo",
+  "fecha": "2026-10-23",
+  "descripcion": "EXCAVACION Y ENROCADO EN TOMA DE LIMPIA",
+  "horas": 4.3,
+  "acumulado": 50.1,
+  "saldo_archivo": 40.14984878,
   "trabajo": true
  }
 ]

@@ -48,7 +48,7 @@
   "horas_os": 248.0,
   "arrastre_periodo": "Setiembre",
   "arrastre_horas": 2.6,
-  "saldo_archivo": 100.3,
+  "saldo_archivo": 59.1,
   "orden": 4
  },
  {
@@ -71,10 +71,10 @@
   "detalle": "VIRGO",
   "icono": "excavadora",
   "os": "",
-  "horas_os": null,
+  "horas_os": 90.24984878,
   "arrastre_periodo": "",
   "arrastre_horas": 0.0,
-  "saldo_archivo": null,
+  "saldo_archivo": 40.14984878,
   "orden": 6
  }
 ]

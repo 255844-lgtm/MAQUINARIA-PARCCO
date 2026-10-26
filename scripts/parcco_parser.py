@@ -6,6 +6,7 @@ Uso: python3 parcco_parser.py fuente.txt --out DIR --archivo "NOMBRE" --modifica
 El archivo tiene bloques lado a lado, uno por máquina:
   fila título: TIPO MARCA MODELO
   fila OS:     OS, <n°>, , HM, <horas>
+  [filas extra opcionales, p. ej. montos en soles]
   cabecera:    FECHA, DESCRIPCION, HM, ACUM HM, [SALDO]
   arrastre:    , <mes anterior>, , <acum>, <saldo>
   días:        <fecha>, <actividad>, <hm>, <acum>, <saldo>
@@ -132,6 +133,10 @@ def main():
     g = grid_from(open(a.fuente, encoding='utf-8').read())
     h = next(i for i, r in enumerate(g) if any(c == 'FECHA' for c in r))
     starts = [j for j, c in enumerate(g[h]) if c == 'FECHA']
+    # Fila OS: la más cercana encima de la cabecera que tenga 'OS'; puede haber filas extra (montos) entre ambas.
+    ro = next((r for r in range(h - 1, -1, -1) if any(c.upper() == 'OS' for c in g[r])), h - 1)
+    # Fila título: la más cercana encima de la fila OS con algún texto.
+    rt = next((r for r in range(ro - 1, -1, -1) if any(c and num(c) is None for c in g[r])), ro - 1)
     maquinas, partes, avisos, usados = [], [], [], set()
     for bi, s in enumerate(starts):
         e = starts[bi + 1] if bi + 1 < len(starts) else len(g[h])
@@ -139,13 +144,14 @@ def main():
         cD = next((j for k, j in head.items() if k.startswith('DESCRIP')), s + 1)
         cH, cA = head.get('HM', s + 2), head.get('ACUM HM', s + 3)
         cS = head.get('SALDO')
-        titulo = next((g[r][s] for r in range(h - 1, -1, -1) if g[r][s] and g[r][s] not in ('OS',)), '') if h else ''
-        titulo = g[h - 2][s] if h >= 2 and g[h - 2][s] else titulo
+        titulo = g[rt][s] if rt >= 0 and g[rt][s] and num(g[rt][s]) is None else ''
+        if not titulo:
+            titulo = next((g[r][s] for r in range(h - 1, -1, -1) if g[r][s] and g[r][s].upper() != 'OS' and num(g[r][s]) is None), '')
         if not titulo:
             titulo = f'MÁQUINA {bi + 1}'
         os_, hos = '', None
-        if h >= 1:
-            fila = g[h - 1]
+        if ro >= 0:
+            fila = g[ro]
             for j in range(s, e):
                 if fila[j].upper() == 'OS' and j + 1 < e:
                     os_ = fila[j + 1]
