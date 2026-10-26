@@ -119,6 +119,7 @@
         <div class="mq-box mq-kpi"><div class="mq-kpi-label">Saldo de la O.S. a la fecha</div><div class="mq-kpi-val"><span class="mq-unit">S/</span><span id="os-saldo">—</span></div><div class="mq-kpi-sub" id="os-saldo-sub">—</div></div>
         <div class="mq-box mq-kpi"><div class="mq-kpi-label">Máximo de horas de Excavadora Virgo (total)</div><div class="mq-kpi-val"><span id="os-maxhoy">—</span><span class="mq-unit">h</span></div><div class="mq-kpi-sub" id="os-maxhoy-sub">—</div></div>
       </div>
+      <p class="mq-note" id="os-exp" style="margin-top:var(--cds-gap-sm)">Según el expediente: O.S. N° 0002597 del 25/09/2026 a <b>GRUPO VIRGO S.A.C.</b> (RUC 20604487090), alquiler de rodillo liso vibratorio con operador a todo costo; valor de venta S/ 37,264.41 + IGV S/ 6,707.59 = S/ 43,972.00 por 205 HM. Pago por horas efectivas trabajadas. Plazo: las 205 HM se consumen dentro de 60 días calendario contados desde el día siguiente a la notificación (28/09/2026), es decir hasta el <b>27/11/2026</b><span id="os-plazo"></span>.</p>
       <div class="mq-stack" id="os-stack" role="img" aria-label="Distribución del monto de la O.S. 2597"></div>
       <div class="mq-legend" id="os-leg"></div>
       <div class="mq-tablebox" style="max-height:none">
@@ -160,6 +161,8 @@
         [f2(r) + ' h' + (tag ? ' (actual)' : ''), f2(e) + ' h', f2(r * TR), f2(e * TV)].forEach((t, i) => { const td = document.createElement('td'); td.textContent = t; td.style.padding = '4px 8px'; if (i) td.className = 'n'; tr.append(td); });
         tb.append(tr);
       });
+      { const fin = Date.UTC(2026, 10, 27), hoy = new Date(), h = Date.UTC(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
+        const d = Math.round((fin - h) / 864e5); $('os-plazo').textContent = d >= 0 ? ` (quedan ${d} días calendario)` : ' (plazo vencido)'; }
       $('os-nota').textContent = `Horas acumuladas según el último parte: Rodillo al ${fd(pr && pr.fecha)}, Excavadora Virgo al ${fd(pv && pv.fecha)}. Fórmula: horas de Excavadora = (43,972 − horas de Rodillo × ${f2(TR)}) ÷ 400. Los cuadros del Rodillo y de la Excavadora Virgo usan este mismo cálculo en soles; en el gráfico de órdenes, la O.S. 2597 aparece en horas equivalentes de Rodillo.`;
     })();
     </script>
