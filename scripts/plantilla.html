@@ -100,7 +100,7 @@
     <div class="mq-cards">
       <div class="mq-box" id="card-ordenes">
         <h3>Saldo por orden de servicio</h3>
-        <p class="mq-note">Barra gris: horas de la O.S. Barra de color: horas acumuladas. A la derecha, el saldo.</p>
+        <p class="mq-note">Barra gris: horas de la O.S. Barra de color: horas acumuladas. A la derecha, el saldo. La O.S. 2597 (en soles) se muestra en horas equivalentes de Rodillo.</p>
         <div class="mq-chart dash-skeleton" id="chart-ordenes" data-source="ordenes"></div>
       </div>
       <div class="mq-box" id="card-flota-dia">
@@ -160,7 +160,7 @@
         [f2(r) + ' h' + (tag ? ' (actual)' : ''), f2(e) + ' h', f2(r * TR), f2(e * TV)].forEach((t, i) => { const td = document.createElement('td'); td.textContent = t; td.style.padding = '4px 8px'; if (i) td.className = 'n'; tr.append(td); });
         tb.append(tr);
       });
-      $('os-nota').textContent = `Horas acumuladas según el último parte: Rodillo al ${fd(pr && pr.fecha)}, Excavadora Virgo al ${fd(pv && pv.fecha)}. Fórmula: horas de Excavadora = (43,972 − horas de Rodillo × ${f2(TR)}) ÷ 400. El saldo en horas de la O.S. 2597 que aparece arriba solo cuenta el Rodillo; el control real es este, en soles.`;
+      $('os-nota').textContent = `Horas acumuladas según el último parte: Rodillo al ${fd(pr && pr.fecha)}, Excavadora Virgo al ${fd(pv && pv.fecha)}. Fórmula: horas de Excavadora = (43,972 − horas de Rodillo × ${f2(TR)}) ÷ 400. Los cuadros del Rodillo y de la Excavadora Virgo usan este mismo cálculo en soles; en el gráfico de órdenes, la O.S. 2597 aparece en horas equivalentes de Rodillo.`;
     })();
     </script>
   </section>
@@ -176,7 +176,7 @@
           <dt>Tipo</dt><dd id="f-tipo" data-source="resumen" data-field="tipo">—</dd>
           <dt>Marca / modelo / placa</dt><dd id="f-detalle" data-source="resumen" data-field="detalle">—</dd>
           <dt>Orden de servicio</dt><dd id="f-os" data-source="resumen" data-field="os">—</dd>
-          <dt>Horas de la O.S.</dt><dd><span id="f-horas-os" data-source="resumen" data-field="horas_os">—</span> h</dd>
+          <dt>Horas de la O.S.</dt><dd><span id="f-horas-os" data-source="resumen" data-field="horas_os">—</span></dd>
           <dt>Comparte O.S. con</dt><dd id="f-comparte" data-source="resumen" data-field="comparte_con">—</dd>
           <dt>Último parte</dt><dd id="f-ultimo" data-source="resumen" data-field="ultimo_parte">—</dd>
         </dl>
@@ -237,6 +237,12 @@
 </div>
 
 <script>
+// O.S. controladas en soles: el monto se reparte entre máquinas con tarifas distintas por hora máquina.
+// O.S. 2597: S/ 43,972.00 = 205 h de Rodillo; la Excavadora Virgo se paga con el mismo monto a S/ 400.00 por hora.
+const OS_SOLES = { '2597': { monto: 43972, ref: 'rodillo-compactador', tarifas: { 'rodillo-compactador': 43972 / 205, 'excavadora-virgo': 400 } } };
+const osDe = (m) => m.os || Object.keys(OS_SOLES).find((k) => m.codigo in OS_SOLES[k].tarifas) || '';
+const soles = (v) => 'S/ ' + Number(v).toLocaleString('es-PE', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+const h2 = (v) => Number(v).toLocaleString('es-PE', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 dash.calc('resumen', {
   inputs: ['maquinas', 'partes'],
   title: 'Saldo y estado por máquina',
@@ -252,7 +258,7 @@ dash.calc('resumen', {
       const ult = ps[ps.length - 1];
       return {
         codigo: m.codigo, nombre: m.nombre, tipo: m.tipo, detalle: m.detalle || '—', icono: m.icono, foto: m.foto || null,
-        os: m.os || '', horas_os: m.horas_os == null || m.horas_os === '' ? null : Number(m.horas_os), orden: Number(m.orden),
+        os: osDe(m), horas_os: m.horas_os == null || m.horas_os === '' ? null : Number(m.horas_os), orden: Number(m.orden),
         arrastre_periodo: m.arrastre_periodo || '', arrastre_horas: Number(m.arrastre_horas) || 0,
         acumulado: ult ? Number(ult.acumulado) : Number(m.arrastre_horas) || 0,
         horas_periodo: r1(ps.reduce((s, p) => s + Number(p.horas), 0)),
@@ -267,6 +273,21 @@ dash.calc('resumen', {
     return base.map((m) => {
       const grupo = m.os ? base.filter((o) => o.os === m.os) : [m];
       const consumo = r1(grupo.reduce((s, o) => s + o.acumulado, 0));
+      const S = OS_SOLES[m.os], t = S && S.tarifas[m.codigo];
+      if (t) {
+        const tf = (o) => S.tarifas[o.codigo] || 0;
+        const gasto = grupo.reduce((s, o) => s + o.acumulado * tf(o), 0), saldoS = S.monto - gasto;
+        const ritmoS = grupo.reduce((s, o) => s + o.promedio_diario * tf(o), 0);
+        const r2 = (x) => Math.round(x * 100) / 100;
+        return {
+          ...m, soles: true, tarifa: t, monto_os: S.monto, gasto_os: r2(gasto), saldo_soles: r2(saldoS), gasto_propio: r2(m.acumulado * t),
+          horas_os: r2(S.monto / t), consumo_os: r1(gasto / t), saldo: r2(saldoS / t), max_horas: r2(m.acumulado + Math.max(0, saldoS) / t),
+          comparte_con: grupo.filter((o) => o.codigo !== m.codigo).map((o) => o.nombre).join(', ') || 'Ninguna',
+          avance: gasto / S.monto,
+          dias_para_agotar: saldoS <= 0 ? 0 : ritmoS ? Math.ceil(saldoS / ritmoS) : null,
+          situacion: saldoS <= 0 ? 'Agotada' : saldoS < 0.15 * S.monto ? 'Por agotar' : 'Con saldo',
+        };
+      }
       const ritmo = grupo.reduce((s, o) => s + o.promedio_diario, 0);
       const saldo = m.horas_os == null ? null : r1(m.horas_os - consumo);
       return {
@@ -289,6 +310,7 @@ dash.calc('ordenes', {
   fn: (resumen) => {
     const g = {};
     resumen.filter((m) => m.os && m.horas_os != null).forEach((m) => {
+      if (OS_SOLES[m.os] && OS_SOLES[m.os].ref === m.codigo && g[m.os]) { const prev = g[m.os].maquinas; g[m.os] = { os: m.os, horas_os: m.horas_os, consumo_os: m.consumo_os, saldo: m.saldo, avance: m.avance, situacion: m.situacion, maquinas: prev, primera: m.codigo }; }
       g[m.os] = g[m.os] || { os: m.os, horas_os: m.horas_os, consumo_os: m.consumo_os, saldo: m.saldo, avance: m.avance, situacion: m.situacion, maquinas: [], primera: m.codigo };
       g[m.os].maquinas.push(m.nombre);
     });
@@ -328,6 +350,11 @@ dash.calc('detalle', {
     };
     return ord.map((p) => {
       const m = info[p.codigo] || {};
+      const os = osDe(m), S = OS_SOLES[os], t = S && S.tarifas[p.codigo];
+      if (t) {
+        const gasto = maquinas.filter((o) => osDe(o) === os).reduce((s, o) => s + acumA(o.codigo, p.fecha) * (S.tarifas[o.codigo] || 0), 0);
+        return { codigo: p.codigo, fecha: p.fecha, descripcion: p.descripcion || '—', horas: Number(p.horas), acumulado: Number(p.acumulado), saldo_os: Math.round((S.monto - gasto) / t * 100) / 100 };
+      }
       const hos = m.horas_os == null || m.horas_os === '' ? null : Number(m.horas_os);
       const grupo = m.os ? maquinas.filter((o) => o.os === m.os) : [m];
       const saldo = hos == null ? null : Math.round((hos - grupo.reduce((s, o) => s + acumA(o.codigo, p.fecha), 0)) * 10) / 10;
@@ -452,11 +479,17 @@ function drawFlota(res) {
     const v = el('div', 'mq-saldo');
     if (m.saldo == null) { v.append(el('span', null, '—')); }
     else { v.append(mark(el('span', null, h1(m.saldo)), 'resumen', 'saldo', m.codigo), el('span', 'mq-unit', 'h')); if (m.situacion !== 'Con saldo') v.style.color = SIT[m.situacion]; }
-    sal.append(el('div', 'mq-kpi-label', m.saldo == null ? 'Saldo de horas: sin horas asignadas' : 'Saldo de horas de la O.S.'), v);
+    if (m.soles) v.firstChild.textContent = h2(m.saldo);
+    sal.append(el('div', 'mq-kpi-label', m.saldo == null ? 'Saldo de horas: sin horas asignadas' : m.soles ? 'Horas que aún puede trabajar (O.S. en soles)' : 'Saldo de horas de la O.S.'), v);
     const tr = el('div', 'mq-track'); const f = el('div', 'mq-fill');
     f.style.width = Math.min(1, m.avance || 0) * 100 + '%'; f.style.background = m.situacion === 'Con saldo' ? C_TRAB() : SIT[m.situacion]; tr.append(f);
     const sub = el('div', 'mq-kpi-sub');
     sub.append('Acumulado ', mark(el('span', null, h1(m.acumulado)), 'resumen', 'acumulado', m.codigo), ' h');
+    if (m.soles) {
+      sub.append(' · Máximo total ', mark(el('b', null, h2(m.max_horas) + ' h'), 'resumen', 'max_horas', m.codigo), ' a ' + soles(m.tarifa) + '/h');
+      const ps = el('div', 'mq-kpi-sub'); ps.append('Saldo O.S. ', mark(el('span', null, soles(m.saldo_soles)), 'resumen', 'saldo_soles', m.codigo), ' · usado por esta máquina ' + soles(m.gasto_propio));
+      c.append(img, top, tipo, mm, sal, tr, sub, ps); box.append(c); return;
+    }
     if (m.horas_os != null) sub.append(' · O.S. ', mark(el('span', null, h1(m.consumo_os)), 'resumen', 'consumo_os', m.codigo), ' de ', mark(el('span', null, h0(m.horas_os)), 'resumen', 'horas_os', m.codigo), ' h');
     c.append(img, top, tipo, mm, sal, tr, sub);
     box.append(c);
@@ -541,7 +574,9 @@ function drawFicha(code, res, det, act) {
   document.getElementById('f-tipo').textContent = m.tipo;
   document.getElementById('f-detalle').textContent = m.detalle;
   document.getElementById('f-os').textContent = m.os || 'Sin orden de servicio';
-  document.getElementById('f-horas-os').textContent = m.horas_os == null ? '—' : h0(m.horas_os);
+  document.getElementById('f-horas-os').textContent = m.horas_os == null ? '—' : m.soles
+    ? `${soles(m.monto_os)} a ${soles(m.tarifa)}/h · máximo ${h2(m.max_horas)} h según las horas de las otras máquinas`
+    : h0(m.horas_os) + ' h';
   document.getElementById('f-comparte').textContent = m.comparte_con;
   document.getElementById('f-ultimo').textContent = m.ultimo_parte ? fD(pd(m.ultimo_parte)) : '—';
   document.querySelectorAll('#kpis-maquina .fk').forEach((s) => {
@@ -677,7 +712,7 @@ function drawEstado(m, grupo) {
     const otros = Math.max(0, m.consumo_os - m.acumulado), saldo = Math.max(0, m.saldo);
     const tot = Math.max(m.horas_os, m.consumo_os) || 1;
     const partes = [[C_TRAB(), 'Esta máquina', m.acumulado], ...(grupo.length > 1 ? [[dash.colors[1], 'Otras máquinas de la O.S.', otros]] : []), [C_SIN, 'Saldo', saldo]];
-    box.append(el('div', 'mq-kpi-label', 'Horas de la O.S. ' + m.os + ' (' + h0(m.horas_os) + ' h)'));
+    box.append(el('div', 'mq-kpi-label', m.soles ? `O.S. ${m.os} en horas equivalentes de esta máquina (${soles(m.monto_os)} ÷ ${soles(m.tarifa)} = ${h2(m.horas_os)} h)` : 'Horas de la O.S. ' + m.os + ' (' + h0(m.horas_os) + ' h)'));
     const stack = el('div', 'mq-stack');
     partes.forEach(([c, t, v]) => { const s = el('div'); s.style.width = (v / tot * 100) + '%'; s.style.background = c; s.title = t; stack.append(s); });
     const grid = el('div', 'mq-estados');
@@ -736,6 +771,7 @@ function drawTexto(tot, res, maq) {
     if (!r) return;
     p.textContent = r.situacion === 'Sin O.S.' ? `${r.nombre} aún no tiene orden de servicio ni horas asignadas; lleva ${h1(r.acumulado)} h trabajadas.`
       : r.situacion === 'Agotada' ? `${r.nombre}: la O.S. ${r.os} agotó sus ${h0(r.horas_os)} h. Requiere ampliar la orden de servicio o retirar la máquina.`
+      : r.soles ? `${r.nombre}: con el saldo de la O.S. ${r.os} (${soles(r.saldo_soles)} de ${soles(r.monto_os)}) puede trabajar ${h2(r.saldo)} h más a ${soles(r.tarifa)}/h; máximo total ${h2(r.max_horas)} h (lleva ${h1(r.acumulado)} h).` + (r.dias_para_agotar ? ` Al ritmo actual de la O.S., alcanza para unos ${h0(r.dias_para_agotar)} días de trabajo.` : '')
       : `${r.nombre}: a la O.S. ${r.os} le quedan ${h1(r.saldo)} h (${pc(1 - r.avance)} de ${h0(r.horas_os)} h)` + (r.dias_para_agotar ? `; al ritmo actual alcanzan para unos ${h0(r.dias_para_agotar)} días de trabajo.` : '.');
     return;
   }
