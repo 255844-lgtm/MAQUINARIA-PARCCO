@@ -306,6 +306,60 @@
   "trabajo": true
  },
  {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-21",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 8.4,
+  "acumulado": 117.3,
+  "saldo_archivo": 122.7,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-22",
+  "descripcion": "Extraccion y preparacion de material",
+  "horas": 8.7,
+  "acumulado": 126.0,
+  "saldo_archivo": 114.0,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-23",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 126.0,
+  "saldo_archivo": 114.0,
+  "trabajo": false
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-24",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 126.0,
+  "saldo_archivo": 114.0,
+  "trabajo": false
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-25",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 126.0,
+  "saldo_archivo": 114.0,
+  "trabajo": false
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-26",
+  "descripcion": "Perfilado de dentellon",
+  "horas": 2.5,
+  "acumulado": 128.5,
+  "saldo_archivo": 111.5,
+  "trabajo": true
+ },
+ {
   "codigo": "volquete-n01-cll-702",
   "fecha": "2026-10-01",
   "descripcion": "Extraccion y preparacion de material",
@@ -509,6 +563,33 @@
   "descripcion": "Transporte de material de relleno",
   "horas": 4.3,
   "acumulado": 105.0,
+  "saldo_archivo": null,
+  "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-24",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 105.0,
+  "saldo_archivo": null,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-25",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 105.0,
+  "saldo_archivo": null,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cll-702",
+  "fecha": "2026-10-26",
+  "descripcion": "Transporte de material de ataguia",
+  "horas": 5.9,
+  "acumulado": 110.9,
   "saldo_archivo": null,
   "trabajo": true
  },
@@ -718,6 +799,33 @@
   "acumulado": 83.9,
   "saldo_archivo": 59.1,
   "trabajo": true
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-24",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 83.9,
+  "saldo_archivo": 59.1,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-25",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 83.9,
+  "saldo_archivo": 59.1,
+  "trabajo": false
+ },
+ {
+  "codigo": "volquete-n01-cde-898",
+  "fecha": "2026-10-26",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 83.9,
+  "saldo_archivo": 53.2,
+  "trabajo": false
  },
  {
   "codigo": "rodillo-compactador",
@@ -933,6 +1041,33 @@
   "horas": 4.3,
   "acumulado": 50.1,
   "saldo_archivo": 40.14984878,
+  "trabajo": true
+ },
+ {
+  "codigo": "excavadora-virgo",
+  "fecha": "2026-10-24",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 50.1,
+  "saldo_archivo": 40.14984878,
+  "trabajo": false
+ },
+ {
+  "codigo": "excavadora-virgo",
+  "fecha": "2026-10-25",
+  "descripcion": "—",
+  "horas": 0.0,
+  "acumulado": 50.1,
+  "saldo_archivo": 40.14984878,
+  "trabajo": false
+ },
+ {
+  "codigo": "excavadora-virgo",
+  "fecha": "2026-10-26",
+  "descripcion": "EXCAVACION Y ENROCADO EN TOMA DE LIMPIA",
+  "horas": 7.6,
+  "acumulado": 57.7,
+  "saldo_archivo": 32.54984878,
   "trabajo": true
  }
 ]
