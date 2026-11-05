@@ -22,7 +22,7 @@
   "horas_os": 240.0,
   "arrastre_periodo": "Setiembre",
   "arrastre_horas": 6.4,
-  "saldo_archivo": 111.5,
+  "saldo_archivo": 90.8,
   "orden": 2
  },
  {
@@ -61,7 +61,7 @@
   "horas_os": 205.0,
   "arrastre_periodo": "",
   "arrastre_horas": 0.0,
-  "saldo_archivo": 168.3,
+  "saldo_archivo": 157.6,
   "orden": 5
  },
  {
@@ -71,10 +71,10 @@
   "detalle": "VIRGO",
   "icono": "excavadora",
   "os": "",
-  "horas_os": 90.24984878,
+  "horas_os": 84.51203902,
   "arrastre_periodo": "",
   "arrastre_horas": 0.0,
-  "saldo_archivo": 32.54984878,
+  "saldo_archivo": 26.81203902,
   "orden": 6
  }
 ]

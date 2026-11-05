@@ -360,6 +360,42 @@
   "trabajo": true
  },
  {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-27",
+  "descripcion": "preparado de material",
+  "horas": 8.0,
+  "acumulado": 136.5,
+  "saldo_archivo": 103.5,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-28",
+  "descripcion": "traslado de paneles",
+  "horas": 0.7,
+  "acumulado": 137.2,
+  "saldo_archivo": 102.8,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-29",
+  "descripcion": "excavacion en dentelln",
+  "horas": 7.0,
+  "acumulado": 144.2,
+  "saldo_archivo": 95.8,
+  "trabajo": true
+ },
+ {
+  "codigo": "retroexcavadora-cat-420f2",
+  "fecha": "2026-10-30",
+  "descripcion": "excavacion en base de tuberia de fondo",
+  "horas": 5.0,
+  "acumulado": 149.2,
+  "saldo_archivo": 90.8,
+  "trabajo": true
+ },
+ {
   "codigo": "volquete-n01-cll-702",
   "fecha": "2026-10-01",
   "descripcion": "Extraccion y preparacion de material",
@@ -963,12 +999,30 @@
   "trabajo": true
  },
  {
+  "codigo": "rodillo-compactador",
+  "fecha": "2026-10-21",
+  "descripcion": "COMPACTADO DE RELLENO",
+  "horas": 5.1,
+  "acumulado": 41.8,
+  "saldo_archivo": 163.2,
+  "trabajo": true
+ },
+ {
+  "codigo": "rodillo-compactador",
+  "fecha": "2026-10-22",
+  "descripcion": "COMPACTADO DE RELLENO",
+  "horas": 5.6,
+  "acumulado": 47.4,
+  "saldo_archivo": 157.6,
+  "trabajo": true
+ },
+ {
   "codigo": "excavadora-virgo",
   "fecha": "2026-10-15",
   "descripcion": "PREPARACION DE MATERIAL SELECCIONADO",
   "horas": 7.8,
   "acumulado": 7.8,
-  "saldo_archivo": 82.44984878,
+  "saldo_archivo": 76.71203902,
   "trabajo": true
  },
  {
@@ -977,7 +1031,7 @@
   "descripcion": "ELIMINACION DE ATAGUIA",
   "horas": 7.7,
   "acumulado": 15.5,
-  "saldo_archivo": 74.74984878,
+  "saldo_archivo": 69.01203902,
   "trabajo": true
  },
  {
@@ -986,7 +1040,7 @@
   "descripcion": "RELLENO DE BLANQUET",
   "horas": 3.7,
   "acumulado": 19.2,
-  "saldo_archivo": 71.04984878,
+  "saldo_archivo": 65.31203902,
   "trabajo": true
  },
  {
@@ -995,7 +1049,7 @@
   "descripcion": "—",
   "horas": 0.0,
   "acumulado": 19.2,
-  "saldo_archivo": 71.04984878,
+  "saldo_archivo": 65.31203902,
   "trabajo": false
  },
  {
@@ -1004,7 +1058,7 @@
   "descripcion": "EXCAVACION Y ENROCADO EN TOMA DE LIMPIA",
   "horas": 7.6,
   "acumulado": 26.8,
-  "saldo_archivo": 63.44984878,
+  "saldo_archivo": 57.71203902,
   "trabajo": true
  },
  {
@@ -1013,7 +1067,7 @@
   "descripcion": "EXCAVACION Y ENROCADO EN TOMA DE LIMPIA",
   "horas": 2.8,
   "acumulado": 29.6,
-  "saldo_archivo": 60.64984878,
+  "saldo_archivo": 54.91203902,
   "trabajo": true
  },
  {
@@ -1022,7 +1076,7 @@
   "descripcion": "EXCAVACION Y ENROCADO EN TOMA DE LIMPIA",
   "horas": 8.3,
   "acumulado": 37.9,
-  "saldo_archivo": 52.34984878,
+  "saldo_archivo": 46.61203902,
   "trabajo": true
  },
  {
@@ -1031,7 +1085,7 @@
   "descripcion": "EXCAVACION Y ENROCADO EN TOMA DE LIMPIA",
   "horas": 7.9,
   "acumulado": 45.8,
-  "saldo_archivo": 44.44984878,
+  "saldo_archivo": 38.71203902,
   "trabajo": true
  },
  {
@@ -1040,7 +1094,7 @@
   "descripcion": "EXCAVACION Y ENROCADO EN TOMA DE LIMPIA",
   "horas": 4.3,
   "acumulado": 50.1,
-  "saldo_archivo": 40.14984878,
+  "saldo_archivo": 34.41203902,
   "trabajo": true
  },
  {
@@ -1049,7 +1103,7 @@
   "descripcion": "—",
   "horas": 0.0,
   "acumulado": 50.1,
-  "saldo_archivo": 40.14984878,
+  "saldo_archivo": 34.41203902,
   "trabajo": false
  },
  {
@@ -1058,7 +1112,7 @@
   "descripcion": "—",
   "horas": 0.0,
   "acumulado": 50.1,
-  "saldo_archivo": 40.14984878,
+  "saldo_archivo": 34.41203902,
   "trabajo": false
  },
  {
@@ -1067,7 +1121,7 @@
   "descripcion": "EXCAVACION Y ENROCADO EN TOMA DE LIMPIA",
   "horas": 7.6,
   "acumulado": 57.7,
-  "saldo_archivo": 32.54984878,
+  "saldo_archivo": 26.81203902,
   "trabajo": true
  }
 ]
